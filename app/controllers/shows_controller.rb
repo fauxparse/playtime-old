@@ -1,5 +1,6 @@
 class ShowsController < ApplicationController
   respond_to :json
+  require_login
   
   def index
     respond_to do |format|
