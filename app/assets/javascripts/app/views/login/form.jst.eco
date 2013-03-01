@@ -1,0 +1,15 @@
+<form>
+  <h2>Please log in.</h2>
+  <div class="control-group">
+    <label for="email"></label>
+    <input name="email" type="email" placeholder="Email address">
+  </div>
+  <div class="control-group">
+    <label for="password"></label>
+    <input name="password" type="password" placeholder="Password"></li>
+  </div>
+  <button>Log in</button>
+  <div class="message"></div>
+</form>
+<a class="by-mistake" href="http://www.courtjesters.co.nz">Looking for the Court Jesters website?</a>
+<div class="overlay" style="display: none"></div>

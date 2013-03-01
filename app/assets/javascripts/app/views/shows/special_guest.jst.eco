@@ -1,0 +1,4 @@
+<form>
+  <input type="text" name="name" placeholder="Guest’s name">
+  <button data-action="ok">OK</button><button data-action="cancel">Cancel</button>
+</form>

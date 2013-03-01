@@ -1,0 +1,108 @@
+@import "variables.css.less";
+
+.login {
+  position: absolute;
+  z-index: 1000;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: @BLACK;
+  color: white;
+  transition: top @SLOW ease;
+  -webkit-transition: top @SLOW ease;
+  -moz-transition: top @SLOW ease;
+
+  &.in {
+    top: 0;
+  }
+
+  form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 256px;
+    margin: -144px;
+    background: @GREY;
+    padding: 16px;
+    border-radius: 4px;
+
+    h2 {
+      margin: 0 0 16px;
+      text-align: center;
+      font-size: 24px;
+      line-height: 24px;
+      text-shadow: 0 -1px 0.5px @BLACK;
+    }
+
+    .control-group {
+      margin: 0 0 16px;
+      background: @WHITE;
+      height: 40px;
+      padding: 0 0 0 40px;
+    }
+
+    input, button {
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      font-size: 24px;
+      line-height: 40px;
+      vertical-align: middle;
+      border: none;
+      box-shadow: none;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    input {
+      background: @WHITE;
+      color: @BLACK;
+    }
+
+    button {
+      background: @GREEN;
+      color: white;
+      text-align: center;
+      text-shadow: 0 -1px 0.5px darken(@GREEN, 20%);
+    }
+
+    [disabled] {
+      opacity: 0.5;
+    }
+
+    .message {
+      margin: 16px 0 0;
+      text-align: center;
+      color: fade(@WHITE, 50%);
+
+      &:empty {
+        display: none;
+      }
+    }
+  }
+
+  a.by-mistake {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    text-align: center;
+    text-decoration: none;
+    color: fade(@WHITE, 50%);
+  }
+
+  .overlay {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 72px;
+    height: 72px;
+    margin: -36px;
+    background: @BLACK url(/assets/loading.gif) no-repeat 50% 50%;
+    opacity: 0.75;
+    border-radius: 8px;
+  }
+}
+

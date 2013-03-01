@@ -1,0 +1,12 @@
+<header>
+  <a href="#" rel="up">≡</a>
+  <h2>Notes <%= @show.date().format "%d/%m/%Y" %></h2>
+</header>
+<div class="content">
+  <ol class="comments"></ol>
+  <form>
+    <textarea name="content" rows="5" placeholder="Add a comment…"></textarea>
+    <input type="hidden" name="author_id" value="<%= App.Models.Jester.current().id %>">
+    <button><i class="icon-notes"></i> Post comment</button>
+  </form>
+</div>

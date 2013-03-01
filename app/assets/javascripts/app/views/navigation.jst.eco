@@ -1,0 +1,11 @@
+<ul>
+  <li><a href="#/shows">Shows</a></li>
+  <li><a href="#/availability">Availability</a></li>
+  <li><a href="#/jesters">Jesters</a></li>
+  <li><a href="#/awards">Awards</a></li>
+</ul>
+<ul>
+  <li><a href="#/calendar">My availability</a></li>
+  <li><a href="#/me">My details</a></li>
+  <li><a href="#/logout">Log out</a></li>
+</ul>

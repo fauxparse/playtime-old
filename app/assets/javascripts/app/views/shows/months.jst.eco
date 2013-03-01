@@ -1,0 +1,7 @@
+<header>
+  <a href="#" rel="up">≡</a>
+  <h2></h2>
+  <a href="#" rel="prev"></a>
+  <a href="#" rel="next"></a>
+</header>
+<div class="months"></div>

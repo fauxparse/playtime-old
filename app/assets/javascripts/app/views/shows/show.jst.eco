@@ -1,0 +1,20 @@
+<header>
+  <button class="active" rel="view" data-view="cast"><i class="icon-player"></i></button>
+  <button rel="view" data-view="available"><i class="icon-available"></i></button>
+  <button rel="view" data-view="all"><i class="icon-all"></i></button>
+  <button rel="guest"><i class="icon-guest"></i></button>
+  <button rel="notes"><i class="icon-notes"></i><span></span></button>
+</header>
+<div class="content">
+  <ul class="cast"></ul>
+</div>
+<footer>
+  <button rel="with" data-role="mc"><i class="icon-mc"></i></button>
+  <button rel="with" data-role="player"><i class="icon-player"></i></button>
+  <button rel="with" data-role="muso"><i class="icon-muso"></i></button>
+  <button rel="with" data-role="notes"><i class="icon-notes"></i></button>
+  <button rel="with" data-role="available"><i class="icon-available"></i></button>
+  <button rel="with" data-role="unavailable"><i class="icon-unavailable"></i></button>
+  <button rel="with" data-role="unknown"><i class="icon-all"></i></button>
+  <button rel="cancel"><i class="icon-cross"></i></button>
+</footer>

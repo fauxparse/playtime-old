@@ -1,0 +1,173 @@
+@import "variables.css.less";
+@import "login.css.less";
+@import "navigation.css.less";
+@import "infinite.css.less";
+@import "shows.css.less";
+@import "modal.css.less";
+
+body {
+  background: @BLACK;
+  color: @WHITE;
+  margin: 0;
+  padding: 0;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+body, input, select, textarea, button {
+  font: normal 14px/18px "Montserrat", "Helvetica Neue", "Helvetica", "Arial Unicode MS", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, button {
+  font-weight: bold;
+}
+
+h2, h3 {
+  text-transform: uppercase;
+}
+
+a {
+  color: @RED;
+}
+
+button {
+  border: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.application {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: @BLACK url(/assets/loading.gif) no-repeat 50% 50%;
+}
+
+.screen {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 0 8px black;
+  background: @WHITE;
+  color: @BLACK;
+  overflow: hidden;
+  transition: left @SLOW ease, margin-left @SLOW ease;
+  -webkit-transition: left @SLOW ease, margin-left @SLOW ease;
+  -moz-transition: left @SLOW ease, margin-left @SLOW ease;
+
+  &.in {
+    left: 0;
+  }
+
+  header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: @BLUE;
+    text-shadow: 0 -1px 0.5px darken(@BLUE, 20%);
+    height: 40px;
+
+    [rel] {
+      position: absolute;
+      left: 4px;
+      top: 4px;
+      width: 32px;
+      height: 32px;
+      background-color: ;
+      border-radius: 4px;
+      text-decoration: none;
+      background: rgba(0, 0, 0, 0.2) url(/assets/icons-white.png) no-repeat 32px 32px;
+      color: @WHITE;
+      font-weight: bold;
+      font-size: 24px;
+      text-align: center;
+      vertical-align: middle;
+      line-height: 30px;
+      text-indent: -100px;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    [rel=up] {
+      background-position: 0px 0px;
+    }
+
+    [rel=prev] {
+      left: auto;
+      right: 37px;
+      border-radius: 4px 0 0 4px;
+      background-position: 0px 0px;
+    }
+
+    [rel=next] {
+      left: auto;
+      right: 4px;
+      border-radius: 0 4px 4px 0;
+      background-position: -96px 0px;
+    }
+
+    h2 {
+      margin: 4px 72px -36px 40px;
+      font-size: 20px;
+      line-height: 32px;
+      vertical-align: middle;
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: white;
+      position: relative;
+      text-transform: uppercase;
+    }
+  }
+
+  >.content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    -webkit-overflow-scroll: touch;
+  }
+
+  header+.content {
+    top: 40px;
+  }
+}
+
+.sections {
+  margin-left: -40px;
+  background: none;
+  box-shadow: none;
+  overflow: visible;
+
+  .edge {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
+  }
+
+  &.in {
+    margin-left: 0;
+    .edge { display: none; }
+  }
+
+  .stackable {
+    z-index: 1;
+
+    &:first-child header [rel=up] {
+      background-position: -256px 0;
+    }
+  }
+}

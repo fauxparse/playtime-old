@@ -1,0 +1,65 @@
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: fade(white, 75%);
+  z-index: 199;
+}
+
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 150%;
+  width: 256px;
+  margin: -144px;
+  background: @GREY;
+  padding: 16px;
+  border-radius: 4px;
+  -webkit-transition: top @SLOW ease, opacity @SLOW ease;
+  z-index: 200;
+  opacity: 0;
+
+  input[type=text] {
+    display: block;
+    margin: 0 0 8px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 4px;
+    line-height: 24px;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+
+  button {
+    background: @RED;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    box-sizing: border-box;
+    display: inline-block;
+    width: 124px;
+    height: 32px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+
+    + button {
+      margin-left: 8px;
+    }
+
+    &[data-action=ok] {
+      background-color: @GREEN;
+    }
+  }
+
+  &.in {
+    top: 50%;
+    opacity: 1;
+  }
+}
