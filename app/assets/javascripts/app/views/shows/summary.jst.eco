@@ -1,8 +1,7 @@
-<li data-date="<%= @show.date().format() %>" data-day="<%= @show.date().format("%A").toLowerCase() %>">
-  <a class="date" href="#/shows/<%= @show.date().format("%Y/%o/%d") %>">
+<li data-date="<%= @show.date().format() %>" data-day="<%= @show.date().format("%A").toLowerCase() %>" data-path="/shows/<%= @show.date().format("%Y/%o/%d") %>">
+  <span class="date">
     <span class="w"><%= @show.date().format("%e") %></span>
     <span class="d"><%= @show.date().format("%d") %></span>
-  </a>
-  <a rel="edit" href="#/shows/<%= @show.date().format("%Y/%o/%d") %>"><i class="icon-chevron-right"></i></a>
+  </span>
   <ul><% for [ role, jesters ] in @show.cast().sorted(): %><% for jester in jesters: %><li class="<%= role %>"><img src="<%= jester.image?() or "/assets/jesters/guest.jpg" %>" alt="<%= jester.toString() %>"></li><% end %><% end %></ul>
 </li>

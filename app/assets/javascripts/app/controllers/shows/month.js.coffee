@@ -2,6 +2,9 @@ class App.Controllers.Shows.Month extends App.Controller
   elements:
     ".shows-this-month" : "list"
 
+  events:
+    "tap .shows-this-month>li" : "go"
+
   init: ->
     [ @year, @month ] = App.Controllers.Shows.Months.fromIndex @index
     @el.addClass("month")
@@ -27,3 +30,6 @@ class App.Controllers.Shows.Month extends App.Controller
   
   refreshShow: (show) =>
     @$("[data-date=#{show.id}]").replaceWith @render(show)
+
+  go: (e) =>
+    @navigate $(e.target).closest("[data-path]").attr("data-path"), true

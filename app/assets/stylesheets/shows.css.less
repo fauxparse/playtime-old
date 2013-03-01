@@ -3,57 +3,42 @@
   padding: 0 0 16px;
   list-style: none;
 
-  li {
+  >li {
     display: block;
-    margin: 0 0 16px;
+    margin: 0;
     padding: 0;
     position: relative;
-    height: 64px;
+    height: 76px;
+    border-top: 1px solid @FAINT;
+    cursor: pointer;
 
     .date {
       position: absolute;
       top: 0;
       left: 0;
       width: 64px;
-      height: 64px;
-      background: white;
-      color: @GREEN;
+      height: 72px;
       text-decoration: none;
 
       .w, .d {
         font-size: 44px;
         position: absolute;
         top: 8px;
-        line-height: 48px;
+        line-height: 56px;
         vertical-align: middle;
       }
 
       .w {
-        left: 4px;
+        left: 0;
         opacity: 0.25;
         color: @BLUE;
       }
 
       .d {
-        right: 4px;
+        right: 8px;
         font-weight: bold;
         opacity: 0.5;
         color: @RED;
-      }
-    }
-
-    [rel=edit] {
-      background: @GREEN;
-      position: absolute;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      width: 64px;
-
-      i {
-        position: absolute;
-        left: 16px;
-        top: 16px;
       }
     }
 
@@ -61,41 +46,17 @@
       position: absolute;
       top: 0;
       left: 64px;
-      right: 64px;
-      height: 64px;
+      right: 0;
+      height: 72px;
       margin: 0;
       padding: 0;
       list-style: none;
       overflow: hidden;
-      background-color: #ddd;
-      background-image: -webkit-gradient(linear, 0 0, 100% 100%,
-                  color-stop(.25, rgba(255, 255, 255, .2)), color-stop(.25, transparent),
-                  color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .2)),
-                  color-stop(.75, rgba(255, 255, 255, .2)), color-stop(.75, transparent),
-                  to(transparent));
-      background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
-                transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
-                transparent 75%, transparent);
-      background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
-                transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
-                transparent 75%, transparent);
-      background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
-                transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
-                transparent 75%, transparent);
-      background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
-                transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
-                transparent 75%, transparent);
-      background-image: linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
-                transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
-                transparent 75%, transparent);
-      -webkit-background-size: 16px 16px;
-      -moz-background-size: 16px 16px;
-      background-size: 16px 16px;
 
       li {
         width: 32px;
         height: 32px;
-        margin: 0;
+        margin: 4px 4px 0 0;
         padding: 0;
         float: left;
 
@@ -438,18 +399,12 @@
 
 @media screen and (min-width: 640px) {
   .shows-this-month {
-    margin-right: 0;
-
-    li {
+    >li {
       float: left;
       width: 50%;
 
       ul {
-        right: 80px;
-      }
-
-      [rel=edit] {
-        right: 16px;
+        right: 40px;
       }
 
       &[data-day=saturday]:first-child {
