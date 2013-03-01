@@ -4,11 +4,5 @@
     <span class="d"><%= @show.date().format("%d") %></span>
   </a>
   <a rel="edit" href="#/shows/<%= @show.date().format("%Y/%o/%d") %>"><i class="icon-chevron-right"></i></a>
-  <ul>
-    <% for [ role, jesters ] in @show.cast().sorted(): %>
-      <% for jester in jesters: %>
-        <li class="<%= role %>"><img src="<%= jester.image?() or "/assets/jesters/guest.jpg" %>" alt="<%= jester.toString() %>"></li>
-      <% end %>
-    <% end %>
-  </ul>
+  <ul><% for [ role, jesters ] in @show.cast().sorted(): %><% for jester in jesters: %><li class="<%= role %>"><img src="<%= jester.image?() or "/assets/jesters/guest.jpg" %>" alt="<%= jester.toString() %>"></li><% end %><% end %></ul>
 </li>

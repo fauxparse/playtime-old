@@ -104,6 +104,20 @@
           max-width: 100%;
         }
       }
+
+      &:empty:after {
+        content: '(not cast)';
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        line-height: 64px;
+        font-size: 20px;
+        font-weight: bold;
+        color: fade(@GREY, 50%);
+        text-align: center;
+      }
     }
   }
 }
