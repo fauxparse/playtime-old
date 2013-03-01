@@ -6,6 +6,57 @@
     right: 0;
     bottom: 0;
 
+    header {
+      height: auto;
+      top: 7px;
+      overflow: hidden;
+      background: fade(@WHITE, 90%);
+      z-index: 50;
+    }
+
+    header {
+      ul {
+        float: left;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        li {
+          display: block;
+          margin: 0;
+          padding: 0;
+          height: 0;
+          overflow: hidden;
+          transition: height @SLOW ease;
+          -webkit-transition: height @SLOW ease;
+          -moz-transition: height @SLOW ease;
+          a {
+            display: block;
+            line-height: 40px;
+            font-size: 20px;
+            vertical-align: middle;
+            color: @FAINT;
+            text-decoration: none;
+            text-shadow: none;
+            text-transform: uppercase;
+            cursor: pointer;
+          }
+          &.active {
+            height: 40px;
+            a { color: @BLACK; }
+          }
+        }
+
+        &.stats {
+          float: right;
+          text-align: right;
+        }
+      }
+
+      &.open ul li {
+        height: 40px;
+      }
+    }
+
     .content {
       position: absolute;
       top: 48px;
@@ -27,8 +78,7 @@
           padding: 4px 0 4px 48px;
           position: relative;
           border-bottom: 1px solid @FAINT;
-          color: @FAINT;
-          &.active { color: @BLACK; }
+          cursor: pointer;
 
           img {
             position: absolute;
@@ -44,6 +94,15 @@
             line-height: 40px;
             vertical-align: middle;
             font-weight: bold;
+          }
+
+          .stat {
+            position: absolute;
+            right: 0;
+            top: 4px;
+            font-size: 20px;
+            line-height: 40px;
+            vertical-align: middle;
           }
         }
       }

@@ -56,7 +56,7 @@ Date::getWeekOfYear = (start = 0) ->
   Math.floor((@getDayOfYear() - (start + 7 - new Date(@getFullYear(), 0, 1).getDay()) % 7) / 7) + 1
   
 Date.fromDB = (value) ->
-  [y, m, d] = value.split("-").map((n) -> parseInt(n, 10))
+  [y, m, d] = value.substring("0,10").split("-").map((n) -> parseInt(n, 10))
   new Date y, m - 1, d, 5
 
 Date::toArray = ->
