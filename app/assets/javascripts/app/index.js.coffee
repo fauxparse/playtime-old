@@ -7,6 +7,7 @@
 class App extends Spine.Controller
   @Controllers:
     Shows: {}
+    Availability: {}
   @Models: {}
   
   init: ->

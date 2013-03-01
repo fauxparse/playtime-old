@@ -12,7 +12,11 @@ class App.Controllers.Application extends App.Controller
   init: ->
     @append new App.Controllers.Navigation
     @append $("<div>").addClass("sections screen").append("<div class=\"edge\">")
+
     @addSection "shows", App.Controllers.Shows.Shows
+    @addSection "availability", App.Controllers.Availability.Availability
+    @addSection "calendar", new App.Controllers.Availability.Availability first: App.Controllers.Availability.Months
+
     @tappable ".edge", @hideNavigation
     Spine.Route.bind "change", @change
     Spine.Route.bind "navigate", @navigate
@@ -27,7 +31,7 @@ class App.Controllers.Application extends App.Controller
     if controller = @sections[name]
       unless name is @current and @container.hasClass("in")
         controller.el.show()
-          .siblings(".section").hide().end()
+          .siblings("section").hide().end()
         @current = name
       @container.addClass "in"
 

@@ -1,0 +1,142 @@
+@import "variables.css.less";
+
+.weekend {
+  .content {
+    position: absolute;
+    top: 41px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0 0 48px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    .cast {
+      margin: 0;
+      padding: 4px 4px 0;
+      list-style: none;
+
+      li {
+        position: relative;
+        float: left;
+        height: 32px;
+        line-height: 32px;
+        vertical-align: middle;
+        font-size: 20px;
+        margin: 0 0 4px;
+        padding: 0 0 0 40px;
+        box-sizing: border-box;
+        width: 50%;
+        cursor: pointer;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        color: @FAINT;
+        display: none;
+
+        &.active {
+          color: @BLACK;
+          display: block;
+        }
+
+        &:before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 0;
+          height: 0;
+          border-top: 32px solid #ccc;
+          border-right: 32px solid #ccc;
+        }
+
+        &[data-state=unknown]:before {
+          border-top-color: #ccc;
+          border-right-color: #ccc;
+        }
+
+        &[data-state=friday]:before {
+          border-top-color: @GREEN;
+          border-right-color: @RED;
+        }
+
+        &[data-state=saturday]:before {
+          border-top-color: @RED;
+          border-right-color: @GREEN;
+        }
+
+        &[data-state=neither]:before {
+          border-top-color: @RED;
+          border-right-color: @RED;
+        }
+
+        &[data-state=both]:before {
+          border-top-color: @GREEN;
+          border-right-color: @GREEN;
+        }
+      }
+    }
+  }
+}
+
+.weekend[data-view=all] .content .cast li {
+  display: block;
+}
+
+.calendar {
+  margin: 0 auto;
+  width: 280px;
+  padding: 0;
+  list-style: none;
+  li {
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 4px;
+    width: 40px;
+    height: 40px;
+    box-sizing: border-box;
+    text-align: right;
+    font-size: 20px;
+    line-height: 32px;
+    vertical-align: middle;
+    color: @FAINT;
+
+    &[data-day=friday],
+    &[data-day=saturday] {
+      color: @BLACK;
+      font-weight: bold;
+      cursor: pointer;
+
+      &[data-state=available] {
+        background-color: @GREEN;
+        color: white;
+      }
+
+      &[data-state=unavailable] {
+        background-color: @RED;
+        color: white;
+      }
+    }
+
+    &.header {
+      border-bottom: 1px solid @GREY;
+    }
+
+    &.offset-0 { margin-left: 0; }
+    &.offset-1 { margin-left: 40px; }
+    &.offset-2 { margin-left: 80px; }
+    &.offset-3 { margin-left: 120px; }
+    &.offset-4 { margin-left: 160px; }
+    &.offset-5 { margin-left: 200px; }
+    &.offset-6 { margin-left: 240px; }
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .weekend .content .cast li { width: 25%; } 
+}
+
+@media screen and (min-width: 1000px) {
+  .weekend .content .cast li { width: 12.5%; } 
+}

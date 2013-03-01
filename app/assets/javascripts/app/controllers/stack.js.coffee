@@ -1,4 +1,6 @@
 class App.Controllers.Stack extends Spine.Controller
+  tag: "section"
+
   elements:
     ".stack" : "stack"
 
@@ -12,6 +14,7 @@ class App.Controllers.Stack extends Spine.Controller
 
   init: ->
     @append $("<div class=\"stack\">")
+    @push @first if @first?
 
   push: (controller) ->
     @controllers[0].path ?= Spine.Route.path if @controllers.length
@@ -19,7 +22,7 @@ class App.Controllers.Stack extends Spine.Controller
     controller.stack = @
     @controllers.unshift controller
     controller.el
-      .addClass("screen")
+      .addClass("stackable screen")
       .appendTo(@stack)
     @immediately -> controller.el.addClass("in")
     controller

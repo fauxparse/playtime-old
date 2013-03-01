@@ -1,0 +1,7 @@
+<header>
+  <button class="active" rel="view" data-view="active"><i class="icon-available"></i></button>
+  <button rel="view" data-view="all"><i class="icon-all"></i></button>
+</header>
+<div class="content">
+  <ul class="cast"></ul>
+</div>

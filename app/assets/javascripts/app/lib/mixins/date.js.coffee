@@ -71,7 +71,7 @@ Date.range = (dates...) ->
     if d1 == d2
       "#{first.format("%d %B")}"
     else
-      "#{first.format("%d")}–#{last.format("%d %b")}"
+      "#{first.format("%d")}–#{last.format("%d %b %Y")}"
   else
-    "#{first.format("%d %b")} – #{last.format("%d %b")}"
+    "#{first.format("%d %b")} – #{last.format("%d %b %Y")}"
   

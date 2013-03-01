@@ -6,8 +6,11 @@ class App.Controllers.Monthly extends App.Controllers.Stackable
 
   init: ->
     @el.addClass "monthly"
+    @header = @$("header")
+    @title = @$("header h2")
     @months = new App.Controllers.Infinite el: @$(".months"), items: @items
     @months.bind "change", @change
+    @months.bind "changing", @changing
     @route "#{@base}", @home
     @route "#{@base}/:year/:month", (params) =>
       @months.go @constructor.toIndex(params.year, params.month), false
@@ -18,12 +21,29 @@ class App.Controllers.Monthly extends App.Controllers.Stackable
   go: (params...) => @months.go params...
 
   home: =>
-    [ year, month ] = @constructor.fromIndex 0
-    @navigate "#{@base}/#{year}/#{month}", true
+    if @path
+      @navigate @path, false
+    else
+      @go 0, false, true
   
   change: (index) =>
     [ year, month ] = @constructor.fromIndex index
     @navigate "#{@base}/#{year}/#{month}", false
+
+  changing: (index) =>
+    [ year, month ] = @constructor.fromIndex index
+    date = new Date(year, month - 1, 1).format("%B %Y")
+    unless index is @index
+      @path = "/shows/#{year}/#{month}"
+      if @index?
+        d = Math.sgn(@index - index)
+        @title.transition { left: 100 * d + "%", opacity: 0 }, -> $(@).remove()
+        @title = $("<h2>").text(date).appendTo(@header)
+          .css({ left: -100 * d + "%", opacity: 0 })
+          .transition({ left: 0, opacity: 1 })
+      else
+        @title.text date
+      @index = index
   
   @current: ->
     unless @_current
