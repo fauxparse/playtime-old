@@ -34,7 +34,7 @@ class App.Controllers.Monthly extends App.Controllers.Stackable
     [ year, month ] = @constructor.fromIndex index
     date = new Date(year, month - 1, 1).format("%B %Y")
     unless index is @index
-      @path = "/shows/#{year}/#{month}"
+      @path = "#{@base}/#{year}/#{month}"
       if @index?
         d = Math.sgn(@index - index)
         @title.transition { left: 100 * d + "%", opacity: 0 }, -> $(@).remove()

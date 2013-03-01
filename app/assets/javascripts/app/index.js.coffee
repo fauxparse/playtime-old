@@ -6,8 +6,9 @@
 
 class App extends Spine.Controller
   @Controllers:
-    Shows: {}
+    Shows:        {}
     Availability: {}
+    Jesters:      {}
   @Models: {}
   
   init: ->

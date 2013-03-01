@@ -25,7 +25,7 @@ class App.Controllers.Application extends App.Controller
   addSection: (name, controller) ->
     controller = new controller unless controller instanceof Spine.Controller
     @sections[name] = controller
-    controller.el.hide().appendTo @container
+    controller.el.attr("data-section", name).hide().appendTo @container
 
   section: (name) ->
     if controller = @sections[name]
