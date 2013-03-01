@@ -1,0 +1,13 @@
+<header>
+  <a href="#" rel="up">≡</a>
+  <h2>Jesters</h2>
+  <button rel="new"><i class="icon-new"></i></button>
+</header>
+<div class="jesters page">
+  <header>
+
+  </header>
+  <div class="content">
+    <ul class="list"></ul>
+  </div>
+</div>

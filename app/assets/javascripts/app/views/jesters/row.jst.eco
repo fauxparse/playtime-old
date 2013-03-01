@@ -1,0 +1,4 @@
+<li data-id="<%= @jester.id %>" data-slug="<%= @jester.slug %>">
+  <img src="<%= @jester.image() %>">
+  <b><%= @jester %></b>
+</li>

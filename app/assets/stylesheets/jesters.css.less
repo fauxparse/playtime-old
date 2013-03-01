@@ -1,0 +1,56 @@
+.jesters {
+  &.page {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    .content {
+      position: absolute;
+      top: 48px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+
+      .list {
+        margin: 0;
+        padding: 0 16px 48px;
+        list-style: none;
+
+        li {
+          display: block;
+          margin: 0;
+          height: 40px;
+          padding: 4px 0 4px 48px;
+          position: relative;
+          border-bottom: 1px solid #ccc;
+          color: @FAINT;
+          &.active { color: @BLACK; }
+
+          img {
+            position: absolute;
+            left: 0;
+            top: 4px;
+            width: 40px;
+            height: 40px;
+          }
+
+          b {
+            display: block;
+            font-size: 20px;
+            line-height: 40px;
+            vertical-align: middle;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
+
+[data-section=jesters] .stackable>header>h2 {
+  margin-right: 40px;
+}

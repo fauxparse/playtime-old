@@ -5,6 +5,7 @@
 @import "shows.css.less";
 @import "modal.css.less";
 @import "availability.css.less";
+@import "jesters.css.less";
 
 body {
   background: @BLACK;
@@ -97,7 +98,7 @@ button {
     }
 
     [rel=up] {
-      background-position: 0px 0px;
+      background-position: -256px 0px;
     }
 
     [rel=prev] {
@@ -112,6 +113,11 @@ button {
       right: 4px;
       border-radius: 0 4px 4px 0;
       background-position: -96px 0px;
+    }
+
+    [rel=edit], [rel=new] {
+      left: auto;
+      right: 4px;
     }
 
     h2 {
@@ -136,10 +142,10 @@ button {
     right: 0;
     bottom: 0;
     overflow-y: auto;
-    -webkit-overflow-scroll: touch;
+    -webkit-overflow-scrolling: touch;
   }
 
-  header+.content {
+  >header+.content {
     top: 40px;
   }
 }

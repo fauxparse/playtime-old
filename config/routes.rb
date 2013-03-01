@@ -8,6 +8,15 @@ Playtime::Application.routes.draw do
     :constraints => { year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/ },
     :only => [ :index, :create, :update, :destroy ]
 
+  resources :jesters do
+    collection do
+      get "stats" => "stats#index"
+    end
+    member do
+      get "stats" => "stats#show"
+    end
+  end
+
   get    'login'  => 'sessions#current', as: :current_session
   post   'login'  => 'sessions#login',   as: 'login'
   delete 'logout' => 'sessions#logout',  as: 'logout'
