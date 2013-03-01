@@ -57,7 +57,12 @@ class App.Controllers.Login extends App.Controller
       .done((data) => @setup data, login)
       .error(=> @show login)
     login
-    
+
+  @logout: ->
+    $.ajax
+      url: "/logout"
+      type: "delete"
+
   @setup: (data, promise) ->
     App.Models.Jester.refresh data.jesters
     App.Models.Jester.current data.current

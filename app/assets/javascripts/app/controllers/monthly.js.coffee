@@ -21,7 +21,7 @@ class App.Controllers.Monthly extends App.Controllers.Stackable
   go: (params...) => @months.go params...
 
   home: =>
-    if @path
+    if @path > "/"
       @navigate @path, false
     else
       @go 0, false, true

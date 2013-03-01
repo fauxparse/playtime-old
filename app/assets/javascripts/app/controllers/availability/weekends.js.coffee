@@ -21,7 +21,7 @@ class App.Controllers.Availability.Weekends extends App.Controllers.Stackable
   go: (params...) => @weekends.go params...
 
   home: =>
-    if @path
+    if @path > "/"
       @navigate @path, false
     else
       @go 0, false, true

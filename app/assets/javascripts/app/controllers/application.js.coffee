@@ -21,7 +21,14 @@ class App.Controllers.Application extends App.Controller
     @tappable ".edge", @hideNavigation
     Spine.Route.bind "change", @change
     Spine.Route.bind "navigate", @navigate
+
     Spine.Route.setup trigger: true
+
+    @bind "release", @finished
+
+  finished: =>
+    Spine.Route.unbind "change", @change
+    Spine.Route.unbind "navigate", @navigate
 
   addSection: (name, controller) ->
     controller = new controller unless controller instanceof Spine.Controller
