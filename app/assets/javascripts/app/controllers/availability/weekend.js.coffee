@@ -40,6 +40,7 @@ class App.Controllers.Availability.Weekend extends App.Controller
     @cast.empty()
     for jester in App.Models.Jester.sorted()
       li = $("<li>", "data-id": jester.id, text: jester.toString(), "data-state": "unknown")
+        .prepend("<i></i> ")
         .toggleClass("active", jester.active)
         .appendTo(@cast)
     states = {}

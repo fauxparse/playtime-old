@@ -39,7 +39,7 @@
           display: block;
         }
 
-        &:before {
+        i {
           content: '';
           position: absolute;
           left: 0;
@@ -50,27 +50,27 @@
           border-right: 32px solid #ccc;
         }
 
-        &[data-state=unknown]:before {
+        &[data-state=unknown] i {
           border-top-color: #ccc;
           border-right-color: #ccc;
         }
 
-        &[data-state=friday]:before {
+        &[data-state=friday] i {
           border-top-color: @GREEN;
           border-right-color: @RED;
         }
 
-        &[data-state=saturday]:before {
+        &[data-state=saturday] i {
           border-top-color: @RED;
           border-right-color: @GREEN;
         }
 
-        &[data-state=neither]:before {
+        &[data-state=neither] i {
           border-top-color: @RED;
           border-right-color: @RED;
         }
 
-        &[data-state=both]:before {
+        &[data-state=both] i {
           border-top-color: @GREEN;
           border-right-color: @GREEN;
         }
