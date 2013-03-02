@@ -7,6 +7,7 @@ class App.Controllers.Jesters.List extends App.Controllers.Stackable
 
   events:
     "tap .list li" : "zoom"
+    "tap header [rel=new]" : "newJester"
     "tap header .active a" : "toggleMenu"
     "tap header .years li:not(.active) a" : "changeYear"
     "tap header .stats li:not(.active) a" : "changeStatistic"
@@ -83,6 +84,9 @@ class App.Controllers.Jesters.List extends App.Controllers.Stackable
           when "last_played", "last_mced" then Date.fromDB(stats[@stat]).format("%d %b")
           when "ratio" then stats[@stat].percentage()
         @$(".list [data-id=#{id}]").show().find(".stat").html stat
+    if @stat is "name" and @year is "all"
+      @$(".list li").not(":visible").each (i, el) ->
+        ids.push $(el).show().attr("data-id")
     @sort ids
     @immediately =>
       @$(".list li:visible").each (i, el) =>
@@ -95,9 +99,9 @@ class App.Controllers.Jesters.List extends App.Controllers.Stackable
         [a, b] = (App.Models.Jester.exists(id).toString() for id in [a, b])
         a.localeCompare b
     else if @stat is "ratio"
-      ids.sort (a, b) => @stats[@year][b][@stat] - @stats[@year][a][@stat]
+      ids.sort (a, b) => (@stats[@year][b][@stat] or -Math.Infinity) - (@stats[@year][a][@stat] or -Math.Infinity)
     else
-      ids.sort (a, b) => @stats[@year][b][@stat].localeCompare @stats[@year][a][@stat]
+      ids.sort (a, b) => (@stats[@year][b][@stat] or "Z").localeCompare (@stats[@year][a][@stat] or "Z")
     ids
 
 
@@ -106,3 +110,5 @@ class App.Controllers.Jesters.List extends App.Controllers.Stackable
     @$("header [data-stat=#{@stat}]").closest("li").addClass("active").siblings().removeClass("active")
     @refresh() if @year
 
+  newJester: =>
+    @navigate "/jesters/new", true

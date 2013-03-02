@@ -7,6 +7,7 @@ class App.Controllers.Jesters.Jesters extends App.Controllers.Stack
   init: ->
     super
     @route "/jesters/:slug/edit", @edit
+    @route "/jesters/new", @newJester
     @route "/jesters/:slug", @jester
     @route "/jesters", @home
 
@@ -24,3 +25,6 @@ class App.Controllers.Jesters.Jesters extends App.Controllers.Stack
       current = @find App.Controllers.Jesters.Jester
       @jester params unless current and current.jester.eql(jester)
       @push new App.Controllers.Jesters.Edit jester: jester
+
+  newJester: (params) =>
+    @push new App.Controllers.Jesters.Edit jester: new App.Models.Jester
