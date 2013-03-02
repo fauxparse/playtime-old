@@ -83,8 +83,11 @@ class App.Controllers.Jesters.List extends App.Controllers.Stackable
           when "last_played", "last_mced" then Date.fromDB(stats[@stat]).format("%d %b")
           when "ratio" then stats[@stat].percentage()
         @$(".list [data-id=#{id}]").show().find(".stat").html stat
-    for id in @sort ids
-      @$(".list [data-id=#{id}]").appendTo @list
+    @sort ids
+    @immediately =>
+      @$(".list li:visible").each (i, el) =>
+        $(el).css
+          top: (ids.indexOf($(el).attr("data-id")) - i) * 49
 
   sort: (ids) ->
     if @stat is "name"
