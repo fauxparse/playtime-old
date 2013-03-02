@@ -7,12 +7,11 @@ class App.Controllers.Stack extends Spine.Controller
   events:
     "up .stackable:gt(0)" : "pop"
 
-  controllers: []
-
   sections:
     shows: App.Controllers.Shows.Shows
 
   init: ->
+    @controllers = []
     @append $("<div class=\"stack\">")
     @push @first if @first?
 

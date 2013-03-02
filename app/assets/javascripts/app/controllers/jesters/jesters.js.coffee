@@ -16,4 +16,4 @@ class App.Controllers.Jesters.Jesters extends App.Controllers.Stack
     @popUntil @first
     if jester = App.Models.Jester.findByAttribute "slug", params.slug
       @push new App.Controllers.Jesters.Jester jester: jester
-      @navigate "/jesters/#{params.slug}", false
+      # @navigate "/jesters/#{params.slug}", false

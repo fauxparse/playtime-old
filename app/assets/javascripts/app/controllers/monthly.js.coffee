@@ -28,7 +28,8 @@ class App.Controllers.Monthly extends App.Controllers.Stackable
   
   change: (index) =>
     [ year, month ] = @constructor.fromIndex index
-    @navigate "#{@base}/#{year}/#{month}", false
+    @path = "#{@base}/#{year}/#{month}"
+    @navigate @path, false
 
   changing: (index) =>
     [ year, month ] = @constructor.fromIndex index
