@@ -116,3 +116,106 @@
 [data-section=jesters] .stackable>header>h2 {
   margin-right: 40px;
 }
+
+.jester.screen {
+  .content {
+    padding: 16px 0 16px 16px;
+    aside {
+      margin: 0 16px 16px 0;
+      position: relative;
+      padding-left: 144px;
+      height: 136px;
+      background: white;
+
+      img {
+        display: block;
+        max-width: 136px;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      dl {
+        position: absolute;
+        top: 8px;
+        left: 144px;
+        right: 8px;
+        bottom: 8px;
+        margin: 0;
+        padding: 8px;
+
+        dt, dd {
+          margin: 0;
+          padding: 0;
+        }
+
+        dt[rel=this-year] {
+          display: none;
+
+          +dd {
+            display: block;
+            font-size: 40px;
+            line-height: 40px;
+            font-weight: bold;
+            margin: 0 0 8px;
+          }
+        }
+
+        dt[rel=last-year] {
+          display: inline;
+          &:before { content: '('; }
+          &:after { content: ': '; }
+          +dd {
+            display: inline;
+            &:after { content: ')'; }
+          }
+        }
+      }
+    }
+
+    .other {
+      float: left;
+      width: 50%;
+      padding-right: 16px;
+      box-sizing: border-box;
+      margin-bottom: 16px;
+
+      h3 {
+        border-bottom: 1px solid @FAINT;
+        margin: 0 0 8px;
+        padding: 0;
+        font-size: 20px;
+        line-height: 32px;
+      }
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        li {
+          display: block;
+          position: relative;
+          margin: 0 0 8px;
+          padding: 0 0 0 40px;
+          height: 32px;
+          font-size: 20px;
+          line-height: 32px;
+          img {
+            width: 32px;
+            position: absolute;
+            left: 0;
+            top: 0;
+          }
+        }
+      }
+    }
+
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .jester.screen .content .other {
+    float: none;
+    width: auto;
+  }
+}

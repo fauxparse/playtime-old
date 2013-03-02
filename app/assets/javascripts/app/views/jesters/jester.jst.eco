@@ -4,4 +4,29 @@
   <button rel="edit"><i class="icon-edit"></i></button>
 </header>
 <div class="content">
+  <aside>
+    <img src="<%= @jester.image() %>">
+    <dl class="percentage">
+      <dt rel="this-year">This year</dt>
+      <dd><%= @stats[@thisYear].ratio.percentage() %></dd>
+      <dt rel="last-year">Last year</dt>
+      <dd><%= @stats[@lastYear].ratio.percentage(0) %></dd>
+    </dl>
+  </aside>
+  <div class="other players">
+    <h3>Often seen with</h3>
+    <ul>
+      <% for jester in @players: %>
+        <li><img src="<%= jester.image() %>"><%= jester %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="other casts">
+    <h3>Often casts</h3>
+    <ul>
+      <% for jester in @casts: %>
+        <li><img src="<%= jester.image() %>"><%= jester %></li>
+      <% end %>
+    </ul>
+  </div>
 </div>

@@ -8,7 +8,12 @@ class StatsController < ApplicationController
 
   def show
     begin
-      respond_with jester.stats(*window)
+      stats = { all: jester.stats(*window("all")) }
+      [0, -1].each do |i|
+        year = Date.today.year + i
+        stats[year] = jester.stats *window(year)
+      end
+      respond_with stats
     rescue MongoMapper::DocumentNotFound
       head :not_found
     end
@@ -19,15 +24,12 @@ protected
     @jester ||= Jester.find_by_slug! params[:id]
   end
 
-  def window
-    start = if params.key? :year
-      if params[:year] == "all"
-        return [100.years, Date.civil(2010, 1, 1)]
-      end
-      Date.civil(params[:year].to_i, 1, 1)
+  def window(year = nil)
+    year ||= (params[:year] or "all")
+    if year == "all"
+      [100.years, Date.civil(2010, 1, 1)]
     else
-      Date.civil(Date.today.year, 1, 1)
+      [1.year, Date.civil(year.to_i, 1, 1)]
     end
-    [1.year, start]
   end
 end

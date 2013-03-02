@@ -5,11 +5,8 @@ Number::pad = (digits, signed) ->
 
 Number::toSignedString = -> (@ < 0 ? "" : "+") + @
 
-Number::percentage = ->
-  p = (Math.round(@ * 10000) / 100).toString()
-  p += ".00" unless /\./.test(p)
-  p += "0" if /\.\d?$/.test(p)
-  p + "%"
+Number::percentage = (decimals = 2) ->
+  (@ * 100).toFixed(decimals) + "%"
 
 Math.trunc = (number) -> Math[if number < 0 then "ceil" else "floor"](number)
 
