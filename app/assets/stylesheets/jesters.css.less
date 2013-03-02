@@ -47,7 +47,9 @@
         }
 
         &.stats {
-          float: right;
+          position: absolute;
+          right: 0;
+          bottom: 0;
           text-align: right;
         }
       }
@@ -223,7 +225,28 @@
         }
       }
     }
+  }
+}
 
+.edit-jester {
+  form {
+    padding: 8px;
+
+    fieldset {
+      margin: 0 0 8px;
+      background: @SILVER;
+      border: none;
+      padding: 8px;
+      border-radius: 8px;
+
+      [name=password_confirmation] {
+        margin-bottom: 0;
+        +p {
+          margin-top: 8px;
+          padding-bottom: 0;
+        }
+      }
+    }
   }
 }
 

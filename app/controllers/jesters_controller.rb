@@ -14,6 +14,11 @@ class JestersController < ApplicationController
     end
   end
 
+  def update
+    jester.update_attributes params[:jester]
+    render json: jester
+  end
+
 protected
   def jester
     @jester ||= Jester.find_by_slug! params[:id]

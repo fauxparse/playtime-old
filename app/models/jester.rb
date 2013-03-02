@@ -5,6 +5,7 @@ class Jester
   key :email,  String
   key :slug,   String
   key :active, Boolean, default: true
+  key :admin,  Boolean, default: false
 
   key :password_digest, String
   key :remember_token,  String

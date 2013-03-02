@@ -6,6 +6,6 @@
 </ul>
 <ul>
   <li><a href="#/calendar">My availability</a></li>
-  <li><a href="#/me">My details</a></li>
+  <li><a href="#/jesters/<%= App.Models.Jester.current().slug %>">My details</a></li>
   <li><a href="#/logout">Log out</a></li>
 </ul>

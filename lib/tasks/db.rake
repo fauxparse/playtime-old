@@ -14,6 +14,7 @@ namespace :db do
         name:                  jester["name"] || "#{jester["first_name"]} #{jester["last_name"][0,1]}.",
         slug:                  jester["slug"],
         active:                jester["active"],
+        admin:                 jester["admin"],
         password:              password,
         password_confirmation: password
       })

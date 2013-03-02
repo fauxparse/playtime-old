@@ -7,7 +7,7 @@
   <header>
     <ul class="years">
       <li><a href="#" data-year="all">All time</a></li>
-      <% for year in [2011..new Date().getFullYear()]: %>
+      <% for year in [2010..new Date().getFullYear()]: %>
         <li><a href="#" data-year="<%= year %>"><%= year %></a></li>
       <% end %>
     </ul>

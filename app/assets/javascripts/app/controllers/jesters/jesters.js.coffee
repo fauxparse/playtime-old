@@ -6,6 +6,7 @@ class App.Controllers.Jesters.Jesters extends App.Controllers.Stack
 
   init: ->
     super
+    @route "/jesters/:slug/edit", @edit
     @route "/jesters/:slug", @jester
     @route "/jesters", @home
 
@@ -16,4 +17,10 @@ class App.Controllers.Jesters.Jesters extends App.Controllers.Stack
     @popUntil @first
     if jester = App.Models.Jester.findByAttribute "slug", params.slug
       @push new App.Controllers.Jesters.Jester jester: jester
-      # @navigate "/jesters/#{params.slug}", false
+      jester
+
+  edit: (params) =>
+    if jester = App.Models.Jester.findByAttribute "slug", params.slug
+      current = @find App.Controllers.Jesters.Jester
+      @jester params unless current and current.jester.eql(jester)
+      @push new App.Controllers.Jesters.Edit jester: jester
