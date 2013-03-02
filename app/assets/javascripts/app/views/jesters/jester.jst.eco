@@ -13,20 +13,22 @@
       <dd><%= @stats[@lastYear].ratio.percentage(0) %></dd>
     </dl>
   </aside>
-  <div class="other players">
-    <h3>Often seen with</h3>
-    <ul>
-      <% for jester in @players: %>
-        <li><img src="<%= jester.image() %>"><%= jester %></li>
-      <% end %>
-    </ul>
-  </div>
-  <div class="other casts">
-    <h3>Often casts</h3>
-    <ul>
-      <% for jester in @casts: %>
-        <li><img src="<%= jester.image() %>"><%= jester %></li>
-      <% end %>
-    </ul>
+  <div class="info">
+    <div class="other players">
+      <h3>Often seen with</h3>
+      <ul>
+        <% for jester in @players: %>
+          <li><a href="#/jesters/<%= jester.slug %>"><img src="<%= jester.image() %>"><%= jester %></a></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="other casts">
+      <h3>Often casts</h3>
+      <ul>
+        <% for jester in @casts: %>
+          <li><a href="#/jesters/<%= jester.slug %>"><img src="<%= jester.image() %>"><%= jester %></a></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>

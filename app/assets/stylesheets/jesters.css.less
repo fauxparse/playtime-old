@@ -120,6 +120,7 @@
 .jester.screen {
   .content {
     padding: 16px 0 16px 16px;
+
     aside {
       margin: 0 16px 16px 0;
       position: relative;
@@ -173,6 +174,10 @@
       }
     }
 
+    .info {
+      overflow: hidden;
+    }
+
     .other {
       float: left;
       width: 50%;
@@ -196,15 +201,24 @@
           display: block;
           position: relative;
           margin: 0 0 8px;
-          padding: 0 0 0 40px;
-          height: 32px;
-          font-size: 20px;
-          line-height: 32px;
-          img {
-            width: 32px;
-            position: absolute;
-            left: 0;
-            top: 0;
+          padding: 0;
+
+          a {
+            display: block;
+            position: relative;
+            padding: 0 0 0 40px;
+            height: 32px;
+            font-size: 20px;
+            line-height: 32px;
+            color: @BLACK;
+            text-decoration: none;
+
+            img {
+              width: 32px;
+              position: absolute;
+              left: 0;
+              top: 0;
+            }
           }
         }
       }
