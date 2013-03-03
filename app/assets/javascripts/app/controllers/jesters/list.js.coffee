@@ -23,7 +23,7 @@ class App.Controllers.Jesters.List extends App.Controllers.Stackable
     @setStatistic "name"
     @setYear new Date().getFullYear()
     @render()
-    App.Models.Jester.bind "change", @render
+    App.Models.Jester.bind "update create destroy", @changed
 
   render: =>
     @list.empty()
@@ -31,6 +31,9 @@ class App.Controllers.Jesters.List extends App.Controllers.Stackable
       $(@view("jesters/row")(jester: jester))
         .toggleClass("active", jester.active)
         .appendTo(@list)
+
+  changed: (jester) =>
+    @render()
 
   zoom: (e) =>
     slug = $(e.target).closest("[data-slug]").attr("data-slug")

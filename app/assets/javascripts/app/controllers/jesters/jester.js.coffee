@@ -31,16 +31,18 @@ class App.Controllers.Jesters.Jester extends App.Controllers.Stackable
         b[1] - a[1]
       (App.Models.Jester.exists(id) for [id, count] in ids.slice(0, 5))
 
-    @html @view("jesters/jester")
+    @html @view("jesters/jester")(
       jester: @jester
       thisYear: thisYear
       lastYear: thisYear - 1
       stats: @data
       players: players
       casts: casts
+    )
     @editButton.toggle App.Models.Jester.current().canEdit(@jester)
 
   updated: (jester) =>
+    @jester = jester
     @refresh()
 
   edit: (e) ->

@@ -25,6 +25,11 @@ end
 gem 'jquery-rails'
 gem 'spine-rails'
 
+gem 'carrierwave'
+gem 'fog', '~> 1.3.1'
+gem 'mini_magick'
+gem 'mm-carrierwave'
+
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 

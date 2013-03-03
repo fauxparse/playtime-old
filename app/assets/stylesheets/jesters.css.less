@@ -229,7 +229,7 @@
 }
 
 .edit-jester {
-  form {
+  .content {
     padding: 8px;
 
     fieldset {
@@ -244,6 +244,39 @@
         +p {
           margin-top: 8px;
           padding-bottom: 0;
+        }
+      }
+
+      &.photo {
+        position: relative;
+        height: 32px;
+
+        img {
+          position: absolute;
+          left: 8px;
+          top: 8px;
+          width: 32px;
+          height: 32px;
+        }
+
+        [type=file] {
+          visibility: hidden;
+        }
+
+        button {
+          position: absolute;
+          top: 8px;
+          left: 48px;
+          height: 32px;
+          background: @RED;
+          color: white;
+          padding: 0 16px;
+          line-height: 32px;
+          font-size: 20px;
+
+          &.disabled {
+            opacity: 0.5;
+          }
         }
       }
     }

@@ -16,4 +16,7 @@
 //= require vendor/spine/ajax
 //= require vendor/spine/route
 //= require vendor/transit
+//= require vendor/jquery-ui
+//= require vendor/jquery-iframe-transport
+//= require vendor/jquery-file-upload
 //= require app

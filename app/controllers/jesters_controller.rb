@@ -32,6 +32,26 @@ class JestersController < ApplicationController
     render json: jester
   end
 
+  def photo
+    jester.avatar = params[:files].first
+    jester.save!
+    render json: {
+      files: [{
+        name:          jester.avatar.identifier,
+        size:          jester.avatar.size,
+        url:           jester.avatar.web.url,
+        delete_url:    photo_jester_url(jester),
+        delete_type:   "DELETE"
+      }]
+    }
+  end
+
+  def delete_photo
+    jester.avatar.remove!
+    jester.update_attributes avatar_filename: nil
+    head :ok
+  end
+
 protected
   def jester
     @jester ||= Jester.find_by_slug! params[:id]

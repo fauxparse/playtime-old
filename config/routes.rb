@@ -13,7 +13,9 @@ Playtime::Application.routes.draw do
       get "stats" => "stats#index"
     end
     member do
-      get "stats" => "stats#show"
+      get    "stats" => "stats#show"
+      post   "photo" => "jesters#photo"
+      delete "photo" => "jesters#delete_photo"
     end
   end
 

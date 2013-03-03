@@ -3,20 +3,27 @@
   <h2><%= if @jester.isNew() then "New Jester" else "Edit #{@jester}" %></h2>
   <button rel="ok"><i class="icon-done"></i></button>
 </header>
-<form class="content">
-  <fieldset>
-    <input type="text" name="name" value="<%= @jester.name %>" placeholder="Name">
-    <p class="error" style="display: none;">Name can’t be blank!</p>
-    <input type="text" name="email" value="<%= @jester.email %>" placeholder="Email address">
-    <p class="error" style="display: none;">Email can’t be blank!</p>
-    <input type="hidden" name="active" value="0">
-    <label class="checkbox"><input type="checkbox" name="active" value="1"<%= " checked" if @jester.active %>> Active</label>
-    <input type="hidden" name="admin" value="0">
-    <label class="checkbox"><input type="checkbox" name="admin" value="1"<%= " checked" if @jester.admin %><%= " disabled" unless App.Models.Jester.current().admin %>> Admin</label>
+<div class="content">
+  <form>
+    <fieldset>
+      <input type="text" name="name" value="<%= @jester.name %>" placeholder="Name">
+      <p class="error" style="display: none;">Name can’t be blank!</p>
+      <input type="text" name="email" value="<%= @jester.email %>" placeholder="Email address">
+      <p class="error" style="display: none;">Email can’t be blank!</p>
+      <input type="hidden" name="active" value="0">
+      <label class="checkbox"><input type="checkbox" name="active" value="1"<%= " checked" if @jester.active %>> Active</label>
+      <input type="hidden" name="admin" value="0">
+      <label class="checkbox"><input type="checkbox" name="admin" value="1"<%= " checked" if @jester.admin %><%= " disabled" unless App.Models.Jester.current().admin %>> Admin</label>
+    </fieldset>
+    <fieldset>
+      <input type="password" name="password" placeholder="Change password">
+      <input type="password" name="password_confirmation" placeholder="Confirm new password">
+      <p class="error" style="display: none;">Passwords don’t match!</p>
+    </fieldset>
+  </form>
+  <fieldset class="photo">
+    <image src="<%= @jester.image() %>">
+    <button rel="photo">Change photo</button>
+    <input type="file" name="files[]" data-url="/jesters/<%= @jester.slug %>/photo">
   </fieldset>
-  <fieldset>
-    <input type="password" name="password" placeholder="Change password">
-    <input type="password" name="password_confirmation" placeholder="Confirm new password">
-    <p class="error" style="display: none;">Passwords don’t match!</p>
-  </fieldset>
-</form>
+</div>

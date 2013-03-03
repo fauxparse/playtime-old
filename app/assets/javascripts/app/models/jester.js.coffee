@@ -6,7 +6,7 @@ class App.Models.Jester extends Spine.Model
   
   toString: -> @name
   
-  image: -> "/assets/jesters/#{@slug}.jpg"
+  image: -> @avatar or "/assets/unknown.png"
   
   compare: (b) -> @toString().localeCompare b.toString()
 

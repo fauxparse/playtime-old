@@ -1,3 +1,5 @@
+require "carrierwave/orm/mongomapper"
+
 class Jester
   include MongoMapper::Document
 
@@ -9,6 +11,9 @@ class Jester
 
   key :password_digest, String
   key :remember_token,  String
+
+  key :avatar_filename, String
+  mount_uploader :avatar, AvatarImageUploader
   
   include ActiveModel::SecurePassword
   has_secure_password
@@ -20,7 +25,8 @@ class Jester
   before_validation :generate_slug
 
   def serializable_hash(options = {})
-    super({ :except => [ :password_digest, :remember_token ] }.merge(options))
+    json = super({ except: [ :password_digest, :remember_token, :avatar_filename ] }.merge(options))
+    json.merge avatar: avatar.try(:web).try(:url)
   end
 
   def self.factory(attrs)
