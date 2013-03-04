@@ -1,7 +1,7 @@
 <header>
   <a href="#" rel="up">≡</a>
   <h2><%= if @jester.isNew() then "New Jester" else "Edit #{@jester}" %></h2>
-  <button rel="ok"><i class="icon-done"></i></button>
+  <button rel="ok"></button>
 </header>
 <div class="content">
   <form>

@@ -1,7 +1,7 @@
 <header>
   <a href="#" rel="up">≡</a>
   <h2><%= @jester %></h2>
-  <button rel="edit"><i class="icon-edit"></i></button>
+  <button rel="edit"></button>
 </header>
 <div class="content">
   <aside>

@@ -1,7 +1,7 @@
 <header>
   <a href="#" rel="up">≡</a>
   <h2>Jesters</h2>
-  <button rel="new"><i class="icon-new"></i></button>
+  <button rel="new"></button>
 </header>
 <div class="jesters page">
   <header>
