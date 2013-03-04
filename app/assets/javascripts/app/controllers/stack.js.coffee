@@ -38,7 +38,7 @@ class App.Controllers.Stack extends Spine.Controller
 
   popAfter: (controller) =>
     if i = @controllers.indexOf(controller)
-      @pop() while @controllers.length > i + 1
+      @pop() while i-- > 0
 
   find: (controller) =>
     for c in @controllers

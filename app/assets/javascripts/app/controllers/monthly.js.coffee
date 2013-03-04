@@ -13,6 +13,7 @@ class App.Controllers.Monthly extends App.Controllers.Stackable
     @months.bind "changing", @changing
     @route "#{@base}", @home
     @route "#{@base}/:year/:month", (params) =>
+      @stack.popAfter @
       @months.go @constructor.toIndex(params.year, params.month), false
     @tappable "[rel=prev]", @months.prev
     @tappable "[rel=next]", @months.next
