@@ -1,12 +1,12 @@
 <form>
   <h2>Please log in.</h2>
   <div class="control-group">
-    <label for="email"></label>
-    <input name="email" type="email" placeholder="Email address">
+    <label for="login_email">Email address</label>
+    <input name="email" id="login_email" type="email" placeholder="Email address">
   </div>
   <div class="control-group">
-    <label for="password"></label>
-    <input name="password" type="password" placeholder="Password"></li>
+    <label for="login_password">Password</label>
+    <input name="password" id="login_password" type="password" placeholder="Password"></li>
   </div>
   <button>Log in</button>
   <div class="message"></div>
