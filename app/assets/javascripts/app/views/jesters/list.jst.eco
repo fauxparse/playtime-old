@@ -13,6 +13,7 @@
     </ul>
     <ul class="stats">
       <li><a href="#" data-stat="name">Jesters</a></li>
+      <li><a href="#" data-stat="player">Played</a></li>
       <li><a href="#" data-stat="ratio">Percentage</a></li>
       <li><a href="#" data-stat="last_played">Last played</a></li>
       <li><a href="#" data-stat="last_mced">Last MCed</a></li>

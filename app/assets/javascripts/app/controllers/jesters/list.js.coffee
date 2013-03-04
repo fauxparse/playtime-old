@@ -80,12 +80,14 @@ class App.Controllers.Jesters.List extends App.Controllers.Stackable
     @$(".list li").hide()
     ids = []
     for own id, stats of @stats[@year]
-      if @stat is "name" or stat = stats[@stat]
+      jester = App.Models.Jester.find id
+      if @stat is "name" or (stat = stats[@stat] and jester._type isnt "Muso")
         ids.push id
         stat = switch @stat
           when "name" then ""
           when "last_played", "last_mced" then Date.fromDB(stats[@stat]).format("%d %b")
           when "ratio" then stats[@stat].percentage()
+          else stats[@stat]
         @$(".list [data-id=#{id}]").show().find(".stat").html stat
     if @stat is "name" and @year is "all"
       @$(".list li").not(":visible").each (i, el) ->
@@ -101,7 +103,7 @@ class App.Controllers.Jesters.List extends App.Controllers.Stackable
       ids.sort (a, b) ->
         [a, b] = (App.Models.Jester.exists(id).toString() for id in [a, b])
         a.localeCompare b
-    else if @stat is "ratio"
+    else if @stat is "ratio" or @stat is "player"
       ids.sort (a, b) => (@stats[@year][b][@stat] or -Math.Infinity) - (@stats[@year][a][@stat] or -Math.Infinity)
     else
       ids.sort (a, b) => (@stats[@year][b][@stat] or "Z").localeCompare (@stats[@year][a][@stat] or "Z")
