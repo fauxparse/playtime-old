@@ -176,10 +176,15 @@ button {
   }
 
   .stackable {
-    z-index: 1;
+    z-index: 10;
 
     &:first-child header [rel=up] {
       background-position: -256px 0;
     }
+
+    &:nth-child(2) { z-index: 20; }
+    &:nth-child(3) { z-index: 30; }
+    &:nth-child(4) { z-index: 40; }
+    &:nth-child(5) { z-index: 50; }
   }
 }
