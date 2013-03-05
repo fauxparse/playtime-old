@@ -13,7 +13,6 @@ class App.Controllers.Jesters.Jesters extends App.Controllers.Stack
 
   home: =>
     @popUntil @first
-    @controllers[0].path = "/awards"
 
   jester: (params) =>
     @popUntil @first

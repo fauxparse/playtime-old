@@ -18,7 +18,7 @@ class App.Controllers.Stack extends App.Controller
   push: (controller) ->
     controller = new controller unless controller instanceof Spine.Controller
     controller.stack = @
-    controller.path = Spine.Route.path
+    controller.path ?= Spine.Route.path
     @controllers.unshift controller
     controller.el
       .addClass("stackable screen")
