@@ -6,7 +6,7 @@ namespace :db do
     
     jesters = {}
     Jester.destroy_all
-    password = ENV["PASSWORD"] || "password"
+    password = ENV["DEFAULT_PASSWORD"] || "password"
     data["jesters"].each do |jester|
       jesters[jester["id"]] = Jester.factory({
         type:                  jester["type"],
@@ -51,6 +51,20 @@ namespace :db do
     
     shows.values.each &:save!
     
+    Award.destroy_all
+    data["awards"].each do |a|
+      a = a["mintie"]
+      if a["date"]
+        award = Award.new
+        award.category   = a["category"] ? a["category"]["name"] : a["custom_category_name"]
+        award.nominees   = a["nominees"]
+        award.author     = jesters[a["jester_id"]]
+        award.content    = a["nomination"]
+        award.created_at = Date.civil(*a["date"].split("-").map { |i| i.to_i(10) }).to_time
+        award.likes      = [jesters[a["jester_id"]].id]
+        award.save!
+      end
+    end
   end
 
 end

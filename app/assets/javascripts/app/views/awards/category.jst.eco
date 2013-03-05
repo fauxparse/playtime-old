@@ -1,0 +1,21 @@
+<header>
+  <a href="#" rel="up">≡</a>
+  <h2><%= @category %></h2>
+  <button rel="new"></button>
+</header>
+<div class="award-category content">
+  <ul class="awards">
+    <% for award in @awards: %>
+      <li data-id="<%= award.id %>">
+        <h3><%= award.nominees %> <small><%= award.date().format("%d %B") %></small></h3>
+        <p class="content"><%= award.content %></p>
+        <p class="meta">
+          <button rel="likes"><i class="icon-like"></i> <b></b></button>
+          <% if award.editableBy App.Models.Jester.current(): %>
+            <a rel="edit" href="#/awards/<%= award.id %>/edit">Edit</a>
+          <% end %>
+        </p>
+      </li>
+    <% end %>
+  </ul>
+</div>

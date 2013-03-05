@@ -1,0 +1,15 @@
+<header>
+  <a href="#" rel="up">≡</a>
+  <h2><%= new Date().getFullYear() %> Awards</h2>
+  <button rel="new"></button>
+</header>
+<div class="award-categories content">
+  <ul class="categories">
+    <% for [key, category, awards] in App.Models.Award.categories(): %>
+      <li data-category="<%= category.slugify() %>">
+        <h3><%= category %></h3>
+        <p><%= awards.length + " nomination" + (if awards.length > 1 then "s" else "") %></p>
+      </li>
+    <% end %>
+  </ul>
+</div>

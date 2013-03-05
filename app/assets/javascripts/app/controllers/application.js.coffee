@@ -16,6 +16,7 @@ class App.Controllers.Application extends App.Controller
     @addSection "shows", App.Controllers.Shows.Shows
     @addSection "availability", App.Controllers.Availability.Availability
     @addSection "jesters", App.Controllers.Jesters.Jesters
+    @addSection "awards", App.Controllers.Awards.Awards
     @addSection "calendar", new App.Controllers.Availability.Availability first: App.Controllers.Availability.Months
 
     @tappable ".edge", @hideNavigation

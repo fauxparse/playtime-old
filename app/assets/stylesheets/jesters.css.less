@@ -230,51 +230,35 @@
   .content {
     padding: 8px;
 
-    fieldset {
-      margin: 0 0 8px;
-      background: @SILVER;
-      border: none;
-      padding: 8px;
-      border-radius: 8px;
+    fieldset.photo {
+      position: relative;
+      height: 32px;
 
-      [name=password_confirmation] {
-        margin-bottom: 0;
-        +p {
-          margin-top: 8px;
-          padding-bottom: 0;
-        }
+      img {
+        position: absolute;
+        left: 8px;
+        top: 8px;
+        width: 32px;
+        height: 32px;
       }
 
-      &.photo {
-        position: relative;
+      [type=file] {
+        visibility: hidden;
+      }
+
+      button {
+        position: absolute;
+        top: 8px;
+        left: 48px;
         height: 32px;
+        background: @RED;
+        color: white;
+        padding: 0 16px;
+        line-height: 32px;
+        font-size: 20px;
 
-        img {
-          position: absolute;
-          left: 8px;
-          top: 8px;
-          width: 32px;
-          height: 32px;
-        }
-
-        [type=file] {
-          visibility: hidden;
-        }
-
-        button {
-          position: absolute;
-          top: 8px;
-          left: 48px;
-          height: 32px;
-          background: @RED;
-          color: white;
-          padding: 0 16px;
-          line-height: 32px;
-          font-size: 20px;
-
-          &.disabled {
-            opacity: 0.5;
-          }
+        &.disabled {
+          opacity: 0.5;
         }
       }
     }

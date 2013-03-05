@@ -37,6 +37,9 @@ class App.Controller extends Spine.Controller
       else
         @el.delegate(selector, eventName, method)
 
+  currentUser: ->
+    App.Models.Jester.current()
+
 class TapManager
   @DRAG_THRESHOLD: 10
   @CLICK_THRESHOLD: 25

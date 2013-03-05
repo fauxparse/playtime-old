@@ -1,0 +1,16 @@
+<header>
+  <a href="#" rel="up">≡</a>
+  <h2><%= if @award.isNew() then "New Award" else "Edit Award" %></h2>
+  <button rel="ok"></button>
+</header>
+<div class="edit-award content">
+  <form>
+    <fieldset>
+      <input type="text" name="category" value="<%= @category %>" placeholder="Category">
+      <p class="error" style="display: none;">Category can’t be blank!</p>
+      <input type="text" name="nominees" value="<%= @award.nominees %>" placeholder="Nominee(s)">
+      <p class="error" style="display: none;">Nominees can’t be blank!</p>
+      <textarea rows="5" name="content"><%= @award.content %></textarea>
+    </fieldset>
+  </form>
+</div>

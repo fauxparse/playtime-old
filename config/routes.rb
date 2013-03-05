@@ -19,6 +19,13 @@ Playtime::Application.routes.draw do
     end
   end
 
+  resources :awards do
+    member do
+      post   "likes" => "awards#like"
+      delete "likes" => "awards#unlike"
+    end
+  end
+
   get    'login'  => 'sessions#current', as: :current_session
   post   'login'  => 'sessions#login',   as: 'login'
   delete 'logout' => 'sessions#logout',  as: 'logout'

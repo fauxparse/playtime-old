@@ -1,4 +1,4 @@
-class App.Controllers.Stack extends Spine.Controller
+class App.Controllers.Stack extends App.Controller
   tag: "section"
 
   elements:
