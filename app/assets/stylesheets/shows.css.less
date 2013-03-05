@@ -98,7 +98,9 @@
     background: @WHITE;
 
     button {
-      position: static;
+      position: relative;
+      left: 0;
+      top: 0;
       background: none;
       border: none;
       width: 32px;
@@ -122,6 +124,12 @@
         border-radius: 4px 4px 0 0;
         height: 35px;
         margin-bottom: 0;
+
+        i {
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
       }
 
       &[rel=notes] {
@@ -243,13 +251,13 @@
     background-position: 0px -32px;
   }
 
-  &[data-role=unavailable] i { background-position-x:  -32px; }
-  &[data-role=available]   i { background-position-x:  -64px; }
-  &[data-role=player]      i { background-position-x:  -96px; }
-  &[data-role=mc]          i { background-position-x: -128px; }
-  &[data-role=muso]        i { background-position-x: -160px; }
-  &[data-role=notes]       i { background-position-x: -192px; }
-  &[data-role=guest]       i { background-position-x: -224px; }
+  &[data-role=unavailable] i { background-position:  -32px -32px; }
+  &[data-role=available]   i { background-position:  -64px -32px; }
+  &[data-role=player]      i { background-position:  -96px -32px; }
+  &[data-role=mc]          i { background-position: -128px -32px; }
+  &[data-role=muso]        i { background-position: -160px -32px; }
+  &[data-role=notes]       i { background-position: -192px -32px; }
+  &[data-role=guest]       i { background-position: -224px -32px; }
 }
 
 .show[data-view=available],
