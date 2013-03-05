@@ -80,15 +80,15 @@ class App.Controllers.Jesters.List extends App.Controllers.Stackable
     @$(".list li").hide()
     ids = []
     for own id, stats of @stats[@year]
-      jester = App.Models.Jester.find id
-      if @stat is "name" or (stat = stats[@stat] and jester._type isnt "Muso")
-        ids.push id
-        stat = switch @stat
-          when "name" then ""
-          when "last_played", "last_mced" then Date.fromDB(stats[@stat]).format("%d %b")
-          when "ratio" then stats[@stat].percentage()
-          else stats[@stat]
-        @$(".list [data-id=#{id}]").show().find(".stat").html stat
+      if jester = App.Models.Jester.exists id
+        if @stat is "name" or (stat = stats[@stat] and jester._type isnt "Muso")
+          ids.push id
+          stat = switch @stat
+            when "name" then ""
+            when "last_played", "last_mced" then Date.fromDB(stats[@stat]).format("%d %b")
+            when "ratio" then stats[@stat].percentage()
+            else stats[@stat]
+          @$(".list [data-id=#{id}]").show().find(".stat").html stat
     if @stat is "name" and @year is "all"
       @$(".list li").not(":visible").each (i, el) ->
         ids.push $(el).show().attr("data-id")
