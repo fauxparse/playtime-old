@@ -9,7 +9,11 @@ class App.Models.Award extends Spine.Model
   categorySlug: ->
     (@category or "").slugify()
 
-  date: -> Date.fromDB @created_at
+  date: ->
+    if @created_at
+      Date.fromDB @created_at
+    else
+      new Date
 
   author: ->
     App.Models.Jester.exists @author_id
@@ -28,6 +32,11 @@ class App.Models.Award extends Spine.Model
       else
         @likes = (id for id in @likes when id isnt jester.id)
     jester.id in @likes
+
+  changeID: (id) ->
+    oldID = @id
+    super
+    @trigger "changeID", oldID, @id
 
   @categories: ->
     categories = {}

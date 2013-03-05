@@ -6,6 +6,7 @@ class App.Controllers.Awards.Edit extends App.Controllers.Stackable
 
   events:
     "tap [rel=ok]" : "save"
+    "tap [rel=destroy]" : "destroy"
 
   init: ->
     super
@@ -14,4 +15,8 @@ class App.Controllers.Awards.Edit extends App.Controllers.Stackable
   save: =>
     @award.fromForm @form
     @award.save()
+    @stack.pop()
+
+  destroy: =>
+    @award.destroy()
     @stack.pop()

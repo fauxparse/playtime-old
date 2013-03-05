@@ -2,6 +2,7 @@
 
 class App.Controllers.Awards.Categories extends App.Controllers.Stackable
   events:
+    "tap [rel=new]" : "create"
     "tap .categories li" : "select"
 
   init: ->
@@ -15,3 +16,7 @@ class App.Controllers.Awards.Categories extends App.Controllers.Stackable
   select: (e) ->
     slug = $(e.target).closest("[data-category]").attr("data-category")
     @navigate "/awards/categories/#{slug}", true
+
+  create: (e) ->
+    @navigate "/awards/new", true
+    

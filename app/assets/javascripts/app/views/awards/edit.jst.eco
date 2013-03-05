@@ -1,6 +1,6 @@
 <header>
   <a href="#" rel="up">≡</a>
-  <h2><%= if @award.isNew() then "New Award" else "Edit Award" %></h2>
+  <h2><%= if @award.isNew() then "New nomination" else "Edit nomination" %></h2>
   <button rel="ok"></button>
 </header>
 <div class="edit-award content">
@@ -13,4 +13,7 @@
       <textarea rows="5" name="content"><%= @award.content %></textarea>
     </fieldset>
   </form>
+  <% if !@award.isNew() and @award.editableBy App.Models.Jester.current(): %>
+    <button rel="destroy">Delete nomination</button>
+  <% end %>
 </div>

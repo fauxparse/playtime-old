@@ -7,9 +7,22 @@ class AwardsController < ApplicationController
     respond_with Award.where(created_at: { "$gte" => this_year }).sort(:created_at.desc)
   end
 
+  def create
+    @award = Award.new params[:award].except(:id)
+    @award.author = current_jester
+    @award.save!
+    @award.like! current_jester
+    render :json => @award
+  end
+
   def update
     award.update_attributes params[:award]
     render :json => @award
+  end
+
+  def destroy
+    award.destroy
+    head :ok
   end
 
   def like

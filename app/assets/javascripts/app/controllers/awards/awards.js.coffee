@@ -9,8 +9,8 @@ class App.Controllers.Awards.Awards extends App.Controllers.Stack
     @routes
       "/awards/categories/:slug" : @category
       "/awards/categories" : @home
+      "/awards/new" : @create
       "/awards/:id/edit" : @edit
-      "/awards/:id" : @award
       "/awards" : @home
     App.Models.Award.fetch cache: false
 
@@ -28,4 +28,6 @@ class App.Controllers.Awards.Awards extends App.Controllers.Stack
     else
       @navigate "/awards", true
 
-  award: (params) =>
+  create: (params) =>
+    @push new App.Controllers.Awards.Edit award: new App.Models.Award
+    
