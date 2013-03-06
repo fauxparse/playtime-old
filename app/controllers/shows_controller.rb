@@ -7,7 +7,7 @@ class ShowsController < ApplicationController
       format.json do
         params[:year]  ||= Date.today.year
         params[:month] ||= Date.today.month
-        render :json => Show.month(params[:year].to_s.to_i(10), params[:month].to_s.to_i(10))
+        render :json => Show.month(params[:year].to_s.to_i(10), params[:month].to_s.to_i(10)).as_json(:methods => :last)
       end
     end
   end

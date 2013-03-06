@@ -11,6 +11,10 @@ class App.Controllers.Shows.Show extends App.Controller
     "tap footer [rel=cancel]" : "deselect"
     "tap footer [rel=with]" : "changeRole"
 
+  FRESH: [51, 51, 51]
+  STALE: [255, 113, 81]
+  STALE_PERIOD: 5 * 7 * 24 * 60 * 60 * 1000 # completely stale after 5 weeks
+
   init: ->
     @el.addClass "show loading"
     @date = App.Controllers.Shows.Days.fromIndex @index
@@ -50,9 +54,18 @@ class App.Controllers.Shows.Show extends App.Controller
       .attr("data-id": guest.slugify(), "data-role": "guest")
 
   renderJester: (jester) =>
-    @person(jester.toString())
+    p = @person(jester.toString())
       .attr("data-id": jester.id)
       .toggleClass("active", jester.active)
+    if jester.active and @show.last[jester.id]?
+      p.css(color: @fadeByDate(@show.date(), Date.fromDB(@show.last[jester.id])))
+    p
+
+  fadeByDate: (now, last) ->
+    d = Math.min now.getTime() - last.getTime(), @STALE_PERIOD
+    p = Math.sqrt(d * 1.0 / @STALE_PERIOD)
+    rgb = ((c * p + @FRESH[i] * (1.0 - p)).toFixed() for c, i in @STALE)
+    "rgb(#{rgb.join ","})"
 
   person: (name) =>
     $("<li>").append($("<span>").append("<i class=\"icon\"></i> ").append($("<b>").text(name)))

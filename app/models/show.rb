@@ -28,6 +28,10 @@ class Show
     end
     self
   end
+
+  def last
+    Jester.last_played_before date
+  end
   
   def self.apply(changes)
     shows = []
@@ -40,7 +44,7 @@ class Show
   end
   
   def serializable_hash(options = {})
-    super({ except: :date }.merge(options))
+    super({ :except => :date }.merge(options))
   end
   
   def self.date_key(date)

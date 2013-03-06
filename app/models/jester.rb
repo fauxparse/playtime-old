@@ -136,6 +136,32 @@ class Jester
     (stats["results"].first || {})["value"] || {}
   end
 
+  def self.last_played_before(date = Date.today)
+    date = date.to_time_in_current_zone.to_time
+    map = """
+      function() {
+        for (id in this.cast) {
+          if (this.cast[id] == 'player') {
+            emit(id, this.date);
+          }
+        }
+      }
+      """
+    reduce = """
+      function(id, dates) {
+        var last = dates.shift();
+        dates.forEach(function(date) {
+          if (date > last) last = date;
+        });
+        return last;
+      }
+      """
+    stats = Show.collection.map_reduce map, reduce,
+      :out => { :inline => true }, :raw => true,
+      :query => { :date => { :"$lt" => date, :"$gt" => date - 3.months } }
+    Hash[*stats["results"].map { |s| [s["_id"], s["value"]] }.flatten]
+  end
+
 protected
   def generate_token
     begin
