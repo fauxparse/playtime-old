@@ -42,35 +42,30 @@
           position: absolute;
           left: 0;
           top: 0;
-          width: 0;
-          height: 0;
-          border-top: 32px solid @SILVER;
-          border-right: 32px solid @SILVER;
+          width: 32px;
+          height: 32px;
+          background: url(/assets/icons-black.png) no-repeat 0 0;
         }
 
         &[data-state=unknown] i {
-          border-top-color: @SILVER;
-          border-right-color: @SILVER;
+          opacity: 0.3;
+          background-position: 0px -32px;
         }
 
         &[data-state=friday] i {
-          border-top-color: @GREEN;
-          border-right-color: @RED;
+          background-position: -192px -64px;
         }
 
         &[data-state=saturday] i {
-          border-top-color: @RED;
-          border-right-color: @GREEN;
+          background-position: -224px -64px;
         }
 
         &[data-state=neither] i {
-          border-top-color: @RED;
-          border-right-color: @RED;
+          background-position: -32px -32px;
         }
 
         &[data-state=both] i {
-          border-top-color: @GREEN;
-          border-right-color: @GREEN;
+          background-position: -64px -32px;
         }
       }
     }
