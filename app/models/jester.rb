@@ -24,6 +24,10 @@ class Jester
   validates_presence_of :name, :email, :slug
   before_validation :generate_slug
 
+  def to_s
+    name
+  end
+
   def serializable_hash(options = {})
     json = super({ except: [ :password_digest, :remember_token, :avatar_filename ] }.merge(options))
     json.merge avatar: avatar.try(:web).try(:url)

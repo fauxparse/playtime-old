@@ -1,0 +1,94 @@
+<html>
+  <head>
+    <style type="text/css">
+      body {
+        background: white;
+        color: black;
+      }
+
+      body, th, td {
+        font: 14px/18px "Gotham", "Avenir", "Proxima Nova", "Helvetica Neue", "Arial Unicode MS", sans-serif;
+      }
+
+      table {
+        width: 36em;
+        margin: 0 auto 8ex;
+      }
+
+      th, td {
+        border-bottom: 1px solid black;
+        padding: 1ex 0;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        text-align: right;
+        text-transform: uppercase;
+        font-weight: bold;
+        width: 50%;
+        padding-right: 1em;
+      }
+
+      td {
+        width: 50%;
+      }
+
+      ul {
+        margin: 0 1em;
+        padding: 0;
+        list-style: none;
+      }
+
+      .header {
+        padding-top: 4ex;
+      }
+
+      .header p {
+        margin: 0 0 1ex;
+        border-bottom: 1px solid black;
+        padding-bottom: 1ex;
+      }
+
+      .header h1 {
+        font-weight: bold;
+        margin: 0;
+        padding: 1ex 0;
+        text-align: center;
+      }
+
+      .footer {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <table border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td class="header" colspan="2">
+          <p><%= @editor %> has updated the cast for</p>
+          <h1><%= @show.date.strftime("%A %e %B") %></h1>
+        </td>
+      </tr>
+      <% { "mc" => "MC", "player" => "Players", "muso" => "Muso", "notes" => "Notes" }.each_pair do |key, label| %>
+        <% if @players.key? key %>
+          <tr>
+            <th><%= label %></th>
+            <td>
+              <ul>
+                <% @players[key].each do |player| %>
+                  <li><%= player %></li>
+                <% end %>
+              </ul>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+      <tr class="footer">
+        <td class="footer" colspan="2">
+          <%= link_to "Show details", root_url(:host => "playtime2.herokuapp.com", :anchor => show_path(@show.date.year, @show.date.month, @show.date.day)) %>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

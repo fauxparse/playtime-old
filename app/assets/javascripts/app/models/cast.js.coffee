@@ -56,7 +56,7 @@ class App.Models.Cast extends Spine.Module
   guests: -> (id for own id, role of @cast when role is "guest")
   
   toJSON: -> $.extend {}, @cast
-    
+
   @comparator: (a, b) =>
     ar = @ROLES.indexOf(a[1])
     br = @ROLES.indexOf(b[1])

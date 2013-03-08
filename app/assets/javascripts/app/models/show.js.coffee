@@ -47,6 +47,12 @@ class App.Models.Show extends Spine.Model
     
   toJSON: ->
     $.extend @attributes, cast: @cast().toJSON()
+
+  sendNotifications: =>
+    $.ajax
+      url: @url() + "/notifications"
+      type: "post"
+      dataType: "json"
   
   @month: (year, month, force = false) ->
     key = "#{year}-#{month}"

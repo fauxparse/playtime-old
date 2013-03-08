@@ -10,10 +10,12 @@ class App.Controllers.Shows.Show extends App.Controller
     "tap header [rel=notes]" : "showNotes"
     "tap footer [rel=cancel]" : "deselect"
     "tap footer [rel=with]" : "changeRole"
+    "deactivate" : "deactivate"
 
   FRESH: [51, 51, 51]
   STALE: [255, 113, 81]
   STALE_PERIOD: 5 * 7 * 24 * 60 * 60 * 1000 # completely stale after 5 weeks
+  NOTIFICATIONS_TIMEOUT: 30 * 1000 # 30-second timeout to send notifications
 
   init: ->
     @el.addClass "show loading"
@@ -21,6 +23,7 @@ class App.Controllers.Shows.Show extends App.Controller
     [@year, @month, @day] = [@date.getFullYear(), @date.getMonth() + 1, @date.getDate()]
     App.Models.Show.day(@year, @month, @day).done @render
     @bind "release", @unbindShow
+    $(window).on "beforeunload", @deactivate
 
   render: (show) =>
     if show? and show instanceof App.Models.Show
@@ -47,6 +50,8 @@ class App.Controllers.Shows.Show extends App.Controller
 
   unbindShow: =>
     @show?.unbind "update", @refresh
+    clearTimeout @_notificationsTimer if @_notificationsTimer
+    $(window).off "beforeunload", @deactivate
 
   renderGuest: (guest) =>
     console.log guest
@@ -114,7 +119,8 @@ class App.Controllers.Shows.Show extends App.Controller
         else
           @show.cast().set id, role
           $li.attr "data-role", role
-    @show.save from: "show"
+      @show.save from: "show"
+      @_notificationsTimer = setTimeout @sendNotifications, @NOTIFICATIONS_TIMEOUT
     @deselect()
 
   showNotes: (e) ->
@@ -130,3 +136,14 @@ class App.Controllers.Shows.Show extends App.Controller
       @show.cast().guest(name)
       @show.save from: "show"
     modal.show()
+
+  deactivate: =>
+    console.log "deactivate"
+    if @_notificationsTimer
+      clearTimeout @_notificationsTimer
+      @sendNotifications()
+    return undefined
+
+  sendNotifications: =>
+    @show.sendNotifications()
+    @_notificationsTimer = false

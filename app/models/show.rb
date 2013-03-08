@@ -32,7 +32,30 @@ class Show
   def last
     Jester.last_played_before date
   end
-  
+
+  def players
+    players = {}
+    except = %w(unavailable available)
+    cast.each_pair do |id, role|
+      unless except.include? role
+        (players[role] ||= []) << id
+      end
+    end
+    ids = players.collect { |role, ids| ids.select { |id| /[a-z0-f]{24}/i === id } }.flatten
+    jesters = Hash[*Jester.find(ids).collect { |j| [j.id.to_s, j] }.flatten ]
+    for role in players.keys
+      players[role].map! { |id| jesters[id] || id }
+    end
+    players
+  end
+
+  def player_emails
+    emails = players.values.collect do |jesters|
+      jesters.collect { |j| j.respond_to?(:email) ? j.email : nil }.flatten
+    end
+    emails.flatten
+  end
+
   def self.apply(changes)
     shows = []
     changes.each do |id, casting|

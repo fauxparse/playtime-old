@@ -25,6 +25,11 @@ class ShowsController < ApplicationController
     shows = Show.apply params[:changes] if params.key? :changes
     render :json => shows
   end
+
+  def send_notifications
+    Postman.casting_notification(show, current_jester).deliver
+    head :ok
+  end
   
 protected
   def show

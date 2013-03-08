@@ -23,12 +23,12 @@ class App.Controllers.Stack extends App.Controller
     controller.el
       .addClass("stackable screen")
       .appendTo(@stack)
-    @immediately -> controller.el.addClass("in")
+    @immediately -> controller.el.addClass("in").trigger("activate")
     controller
 
   pop: (e) =>
     controller = @controllers.shift()
-    @immediately -> controller.el.removeClass("in")
+    @immediately -> controller.el.removeClass("in").trigger("deactivate")
     @after 300, => controller.release()
     if @controllers.length
       @navigate @controllers[0].path, false

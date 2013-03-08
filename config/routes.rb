@@ -1,6 +1,11 @@
 Playtime::Application.routes.draw do
-  get "shows/:year/:month" => "shows#index", :as => :month,
-    :constraints => { year: /\d{4}/, month: /\d{1,2}/ }
+
+  constraints(year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/) do
+    get "shows/:year/:month/:day" => "shows#edit", :as => :show
+    post "shows/:year/:month/:day/notifications" => "shows#send_notifications", as: :show_notifications
+    get "shows/:year/:month" => "shows#index", :as => :month
+  end
+
   put "shows" => "shows#batch", :as => :update_shows
   
   resources :notes,
