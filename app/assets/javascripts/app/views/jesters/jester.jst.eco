@@ -8,9 +8,9 @@
     <img src="<%= @jester.image() %>">
     <dl class="percentage">
       <dt rel="this-year">This year</dt>
-      <dd><%= @stats[@thisYear].ratio.percentage() %></dd>
+      <dd><%= (@stats[@thisYear].ratio or 0).percentage() %></dd>
       <dt rel="last-year">Last year</dt>
-      <dd><%= @stats[@lastYear].ratio.percentage(0) %></dd>
+      <dd><%= (@stats[@lastYear].ratio or 0).percentage(0) %></dd>
     </dl>
   </aside>
   <div class="info">
