@@ -14,6 +14,7 @@
       <label class="checkbox"><input type="checkbox" name="active" value="1"<%= " checked" if @jester.active %>> Active</label>
       <input type="hidden" name="admin" value="0">
       <label class="checkbox"><input type="checkbox" name="admin" value="1"<%= " checked" if @jester.admin %><%= " disabled" unless App.Models.Jester.current().admin %>> Admin</label>
+      <label class="checkbox"><input type="checkbox" name="type" value="Muso"<%= " checked" if @jester.type is "Muso" %><%= " disabled" unless @jester.isNew() %>> Muso</label>
     </fieldset>
     <fieldset>
       <input type="password" name="password" placeholder="Change password">

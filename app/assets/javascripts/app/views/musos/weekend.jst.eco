@@ -1,0 +1,8 @@
+<header>
+  <h3></h3>
+  <h3></h3>
+</header>
+<div class="content">
+  <ul class="musos" data-day="friday"></ul>
+  <ul class="musos" data-day="saturday"></ul>
+</div>

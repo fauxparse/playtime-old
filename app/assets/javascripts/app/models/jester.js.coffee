@@ -1,5 +1,5 @@
 class App.Models.Jester extends Spine.Model
-  @configure "Jester", "slug", "name", "email", "active", "admin", "password", "password_confirmation"
+  @configure "Jester", "slug", "name", "email", "active", "admin", "password", "password_confirmation", "type"
   @extend Spine.Model.Ajax
 
   url: -> "/jesters/#{@slug}"
@@ -27,18 +27,25 @@ class App.Models.Jester extends Spine.Model
 
   @sorted: ->
     all = @all()
-    all.sort (a, b) ->
-      if a.active
-        if b.active
-          a.compare b
-        else
-          -1
-      else if b.active
-        1
-      else
-        a.compare b
+    all.sort comparator
     all
   
   @current: (id) ->
     @_current = @exists id if id?
     @_current
+
+  @musos: ->
+    musos = (j for j in @all() when j.type is "Muso")
+    musos.sort comparator
+    musos
+
+comparator = (a, b) ->
+  if a.active
+    if b.active
+      a.compare b
+    else
+      -1
+  else if b.active
+    1
+  else
+    a.compare b

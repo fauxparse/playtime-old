@@ -9,6 +9,7 @@ class App extends Spine.Controller
     Shows:        {}
     Availability: {}
     Jesters:      {}
+    Musos:        {}
     Awards:       {}
   @Models: {}
   

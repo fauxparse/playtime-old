@@ -15,7 +15,7 @@ class JestersController < ApplicationController
   end
 
   def create
-    @jester = Jester.new params[:jester]
+    @jester = Jester.factory params[:jester].except(:id)
     if @jester.password.blank?
       @jester.password = @jester.password_confirmation = "sp4c3jump"
     end
