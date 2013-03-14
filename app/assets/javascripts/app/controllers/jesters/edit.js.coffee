@@ -32,7 +32,7 @@ class App.Controllers.Jesters.Edit extends App.Controllers.Stackable
   submit: (e) ->
     e.stopPropagation()
     e.preventDefault()
-    @jester.fromForm(@form)
+    @jester.load @form.serializeObject()
     if errors = @jester.validate()
       for field in ["name", "email", "password"]
         @$("[name=#{field}]").nextAll("p").first().toggle errors.hasOwnProperty(field)

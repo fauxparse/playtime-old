@@ -3,11 +3,12 @@ require "carrierwave/orm/mongomapper"
 class Jester
   include MongoMapper::Document
 
-  key :name,   String
-  key :email,  String
-  key :slug,   String
-  key :active, Boolean, default: true
-  key :admin,  Boolean, default: false
+  key :name,    String
+  key :email,   String
+  key :slug,    String
+  key :active,  Boolean, default: true
+  key :admin,   Boolean, default: false
+  key :options, Hash,    default: lambda { Hash.new }
 
   key :password_digest, String
   key :remember_token,  String

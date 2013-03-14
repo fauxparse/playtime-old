@@ -12,8 +12,13 @@ class App.Controllers.Shows.Show extends App.Controller
     "tap footer [rel=with]" : "changeRole"
     "deactivate" : "deactivate"
 
-  FRESH: [51, 51, 51]
-  STALE: [255, 113, 81]
+  COLOURS:
+    NORMAL:
+      FRESH: [51, 51, 51]
+      STALE: [255, 113, 81]
+    COLOURBLIND:
+      FRESH: [204, 204, 204]
+      STALE: [51, 51, 51]
   STALE_PERIOD: 5 * 7 * 24 * 60 * 60 * 1000 # completely stale after 5 weeks
   NOTIFICATIONS_TIMEOUT: 30 * 1000 # 30-second timeout to send notifications
 
@@ -67,9 +72,10 @@ class App.Controllers.Shows.Show extends App.Controller
     p
 
   fadeByDate: (now, last) ->
+    colours = @COLOURS[if App.Models.Jester.current().options().colourblind then "COLOURBLIND" else "NORMAL"]
     d = Math.min now.getTime() - last.getTime(), @STALE_PERIOD
     p = Math.sqrt(d * 1.0 / @STALE_PERIOD)
-    rgb = ((c * p + @FRESH[i] * (1.0 - p)).toFixed() for c, i in @STALE)
+    rgb = ((c * p + colours.FRESH[i] * (1.0 - p)).toFixed() for c, i in colours.STALE)
     "rgb(#{rgb.join ","})"
 
   person: (name) =>

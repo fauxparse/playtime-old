@@ -1,5 +1,5 @@
 class App.Models.Jester extends Spine.Model
-  @configure "Jester", "slug", "name", "email", "active", "admin", "password", "password_confirmation", "type"
+  @configure "Jester", "slug", "name", "email", "active", "admin", "password", "password_confirmation", "type", "options"
   @extend Spine.Model.Ajax
 
   url: -> "/jesters/#{@slug}"
@@ -24,6 +24,12 @@ class App.Models.Jester extends Spine.Model
       delete @password
       delete @password_confirmation
     errors if (k for own k of errors).length
+
+  options: (value) ->
+    if value?
+      delete value.set
+      @_options = value
+    @_options or= {}
 
   @sorted: ->
     all = @all()
