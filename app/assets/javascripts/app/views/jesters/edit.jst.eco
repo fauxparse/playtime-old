@@ -21,10 +21,12 @@
       <input type="password" name="password_confirmation" placeholder="Confirm new password">
       <p class="error" style="display: none;">Passwords don’t match!</p>
     </fieldset>
-    <fieldset class="options">
-      <input type="hidden" name="options[set]" value="1">
-      <label class="checkbox"><input type="checkbox" name="options[colourblind]" value="1"<%= " checked" if @jester.options().colourblind %>> Colourblind</label>
-    </fieldset>
+    <% if App.Models.Jester.current().admin: %>
+      <fieldset class="options">
+        <input type="hidden" name="options[set]" value="1">
+        <label class="checkbox"><input type="checkbox" name="options[colourblind]" value="1"<%= " checked" if @jester.options().colourblind %>> Colourblind</label>
+      </fieldset>
+    <% end %>
   </form>
   <fieldset class="photo">
     <image src="<%= @jester.image() %>">
