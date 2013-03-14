@@ -100,7 +100,7 @@
     float: left;
     margin: 0;
     padding: 4px;
-    width: 40px;
+    width: 30px;
     height: 40px;
     box-sizing: border-box;
     text-align: right;
@@ -114,15 +114,32 @@
       color: @BLACK;
       font-weight: bold;
       cursor: pointer;
+      width: 65px;
+      position: relative;
+      padding-right: 32px;
+
+      &:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 4px;
+        width: 32px;
+        height: 32px;
+        background: url(/assets/icons-black.png) no-repeat 0 -32px;
+      }
+
+      &.header:after { display: none; }
 
       &[data-state=available] {
         background-color: @GREEN;
         color: white;
+        &:after { background: url(/assets/icons-white.png) no-repeat -64px -32px; }
       }
 
       &[data-state=unavailable] {
         background-color: @RED;
         color: white;
+        &:after { background: url(/assets/icons-white.png) no-repeat -32px -32px; }
       }
     }
 
@@ -131,12 +148,12 @@
     }
 
     &.offset-0 { margin-left: 0; }
-    &.offset-1 { margin-left: 40px; }
-    &.offset-2 { margin-left: 80px; }
-    &.offset-3 { margin-left: 120px; }
-    &.offset-4 { margin-left: 160px; }
-    &.offset-5 { margin-left: 200px; }
-    &.offset-6 { margin-left: 240px; }
+    &.offset-1 { margin-left: 30px; }
+    &.offset-2 { margin-left: 60px; }
+    &.offset-3 { margin-left: 90px; }
+    &.offset-4 { margin-left: 120px; }
+    &.offset-5 { margin-left: 150px; }
+    &.offset-6 { margin-left: 215px; }
   }
 }
 
@@ -146,4 +163,22 @@
 
 @media screen and (min-width: 1000px) {
   .weekend .content .cast li { width: 12.5%; } 
+}
+
+.colourblind {
+  .calendar {
+    li {
+
+      &[data-day=friday],
+      &[data-day=saturday] {
+        &[data-state=available] {
+          background-color: @BLACK;
+        }
+
+        &[data-state=unavailable] {
+          background-color: @FAINT;
+        }
+      }
+    }
+  }
 }

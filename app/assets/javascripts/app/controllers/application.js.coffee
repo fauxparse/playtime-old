@@ -24,7 +24,7 @@ class App.Controllers.Application extends App.Controller
     Spine.Route.bind "change", @change
     Spine.Route.bind "navigate", @navigate
 
-    @el.toggleClass "colourblind", App.Models.Jester.current().options().colourblind
+    @el.toggleClass "colourblind", !!App.Models.Jester.current().options().colourblind
 
     Spine.Route.setup trigger: true
 

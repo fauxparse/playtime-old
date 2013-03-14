@@ -56,9 +56,10 @@ class App.Controllers.Availability.Month extends App.Controller
 
   startPainting: (e) ->
     el = $(e.target).closest("li")
-    i = @constructor.STATES.indexOf el.attr("data-state")
-    @state = @constructor.STATES[(i + 1) % @constructor.STATES.length]
-    @paint el, @state
+    unless el.hasClass "header"
+      i = @constructor.STATES.indexOf el.attr("data-state")
+      @state = @constructor.STATES[(i + 1) % @constructor.STATES.length]
+      @paint el, @state
         
   paint: (target, state) ->
     unless target.attr("data-state") is state
@@ -72,7 +73,8 @@ class App.Controllers.Availability.Month extends App.Controller
     if e.which
       e.preventDefault()
       e.stopPropagation()
-      @paint $(e.target).closest("li"), @state
+      el = $(e.target).closest("li")
+      @paint el, @state unless el.hasClass "header"
 
   touch: (e) ->
     e.preventDefault()
@@ -85,6 +87,7 @@ class App.Controllers.Availability.Month extends App.Controller
     e.preventDefault()
     e.stopPropagation()
     touches = event.touches or event.originalEvent.touches
-    @paint $(document.elementFromPoint(touches[0].clientX, touches[0].clientY)).closest("li"), @state
+    el = $(document.elementFromPoint(touches[0].clientX, touches[0].clientY)).closest("li")
+    @paint el, @state unless el.hasClass "header"
 
 
