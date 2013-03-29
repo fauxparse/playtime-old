@@ -113,12 +113,12 @@
       border-radius: 4px;
 
       i {
-        background-image: url(/assets/icons-black.png);
+        .retina-icons('black');
       }
 
       &.active {
         background-color: @BLACK;
-        i { background-image: url(/assets/icons-white.png); }
+        i { .retina-icons('white'); }
       }
 
       &[rel=view] {
@@ -184,7 +184,7 @@
             position: absolute;
             left: 0;
             top: 0;
-            background-image: url(/assets/icons-black.png);
+            .retina-icons('black');
           }
 
           b {
@@ -203,7 +203,7 @@
             text-shadow: 0 -1px 0.5px darken(@GREEN, 20%);
 
             i {
-              background-image: url(/assets/icons-white.png);
+              .retina-icons('white');
             }
           }
         }
@@ -233,7 +233,7 @@
       padding: 0;
       float: left;
 
-      i { background-image: url(/assets/icons-white.png); }
+      i { .retina-icons('white'); }
 
       &[data-role=available] {
         margin-left: 16px;

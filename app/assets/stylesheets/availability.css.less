@@ -58,7 +58,7 @@
           top: 0;
           width: 32px;
           height: 32px;
-          background: url(/assets/icons-black.png) no-repeat 0 0;
+          .retina-icons('black');
         }
 
         &[data-state=unknown] i {
@@ -125,7 +125,7 @@
         top: 4px;
         width: 32px;
         height: 32px;
-        background: url(/assets/icons-black.png) no-repeat 0 -32px;
+        .retina-icons('black');
       }
 
       &.header:after { display: none; }
@@ -133,13 +133,19 @@
       &[data-state=available] {
         background-color: @GREEN;
         color: white;
-        &:after { background: url(/assets/icons-white.png) no-repeat -64px -32px; }
+        &:after {
+          .retina-icons('white');
+          background-position: -64px -32px;
+        }
       }
 
       &[data-state=unavailable] {
         background-color: @RED;
         color: white;
-        &:after { background: url(/assets/icons-white.png) no-repeat -32px -32px; }
+        &:after {
+          .retina-icons('white');
+          background-position: -32px -32px;
+        }
       }
     }
 

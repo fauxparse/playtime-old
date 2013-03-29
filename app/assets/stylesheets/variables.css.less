@@ -23,12 +23,36 @@
 @SLOW: 0.3s;
 @FAST: 0.2s;
 
+@ICON_W: 288px;
+@ICON_H: 96px;
+
+.retina-image(@file, @type, @repeat, @width, @height, @x, @y) {
+  background-image: url('@{file}.@{type}');
+  background-repeat: @repeat;
+  background-position: @x @y;
+ 
+  @media only screen and (-webkit-min-device-pixel-ratio: 1.25) {
+    background-size: @width @height;
+    background-image: url('@{file}@2x.@{type}');
+    background-position: @x @y;
+  }
+}
+
+.retina-icons(@kind) {
+  background-image: url('/assets/icons-@{kind}.png');
+  background-repeat: no-repeat;
+  @media only screen and (-webkit-min-device-pixel-ratio: 1.25) {
+    background-image: url('/assets/icons-@{kind}@2x.png');
+    background-size: @ICON_W @ICON_H;
+  }
+}
+
 i[class*=icon] {
   display: inline-block;
   width: 32px;
   height: 32px;
   line-height: 32px;
-  background: url(/assets/icons-white.png) no-repeat 32px 32px;
+  .retina-icons('white');
 }
 
 i.icon-chevron-left  { background-position:    0px   0px; }
@@ -56,5 +80,5 @@ i.icon-award         { background-position: -128px -64px; }
 i.icon-like          { background-position: -160px -64px; }
 
 i.icon-dark {
-  background-image: url(/assets/icons-black.png);
+  .retina-icons('black');
 }
