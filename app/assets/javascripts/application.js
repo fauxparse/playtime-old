@@ -20,4 +20,5 @@
 //= require vendor/jquery-ui
 //= require vendor/jquery-iframe-transport
 //= require vendor/jquery-file-upload
+//= require vendor/marked
 //= require app

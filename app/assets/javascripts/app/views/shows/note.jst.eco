@@ -1,5 +1,5 @@
 <li class="note" data-id="<%= @note.id %>">
-  <div class="comment"><%= @note.content() %></div>
+  <div class="comment"><%- marked @note.content() %></div>
   <div class="author"><img src="<%= @note.author().image() %>"><%= @note.author() %> <small><%= @note.time().format("%A %d/%m/%Y, %I:%M%P") %></small></div>
   <% if @note.author_id is App.Models.Jester.current().id: %>
     <button rel="delete"><i class="icon-cross icon-dark"></i></button>
