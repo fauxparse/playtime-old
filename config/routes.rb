@@ -7,7 +7,7 @@ Playtime::Application.routes.draw do
   end
 
   put "shows" => "shows#batch", :as => :update_shows
-  get "calendar" => "shows#index", :as => :calendar, :format => "ics"
+  get "calendar" => "shows#calendar", :as => :calendar, :format => "ics"
   
   resources :notes,
     :path => "shows/:year/:month/:day/notes",

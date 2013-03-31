@@ -1,7 +1,7 @@
 class ShowsController < ApplicationController
-  respond_to :json
+  respond_to :json, :except => :calendar
   respond_to :ics, :only => :index
-  require_login
+  require_login :except => :calendar
   
   def index
     respond_to do |format|
@@ -10,7 +10,11 @@ class ShowsController < ApplicationController
         params[:month] ||= Date.today.month
         render :json => Show.month(params[:year].to_s.to_i(10), params[:month].to_s.to_i(10)).as_json(:methods => :last)
       end
-      
+    end
+  end
+  
+  def calendar
+    respond_to do |format|
       format.ics do
         render text: Show.calendar.to_ical
       end
