@@ -40,8 +40,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-# gem 'unicorn'
-gem 'thin'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
