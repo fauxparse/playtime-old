@@ -114,8 +114,8 @@ class Show
     }
     shows.each do |show|
       calendar.event do
-        dtstart     show.start_time.to_datetime
-        dtend       show.end_time.to_datetime
+        dtstart     show.start_time.utc.to_datetime
+        dtend       show.end_time.utc.to_datetime
         summary     "Scared Scriptless"
         description show.description
       end
