@@ -31,7 +31,7 @@ class Show
     roles = self.players
     str = ""
     { mc: "MC", player: "Players", muso: "Muso", notes: "Notes" }.each_pair do |role, label|
-      str += "#{label}: #{roles[role].to_sentence}\r\n" if roles[role]
+      str += "#{label}: #{roles[role].to_sentence}\n" if roles[role]
     end
     str
   end
@@ -108,20 +108,68 @@ class Show
   
   def self.calendar
     calendar = Calendar.new
+
+    calendar.timezone do
+      timezone_id "Pacific/Auckland"
+      
+      daylight do
+        timezone_offset_from "+1200"
+        timezone_offset_to   "+1300"
+        timezone_name        "NZDT"
+        dtstart              "19700927T020000"
+        recurrence_rules     ["FREQ=YEARLY;BYMONTH=9;BYDAY=-1SU"]
+      end
+    
+      standard do
+        timezone_offset_from "+1300"
+        timezone_offset_to   "+1200"
+        timezone_name        "NZST"
+        dtstart              "19700405T030000"
+        recurrence_rules     ["FREQ=YEARLY;BYMONTH=4;BYDAY=1SU"]
+      end
+      
+    end
+    
     shows = where date: {
       "$gt" => (Date.today - 1.month).to_time,
       "$lt" => (Date.today + 2.months).to_time
     }
     shows.each do |show|
       calendar.event do
-        dtstart     show.start_time.utc.to_datetime
-        dtend       show.end_time.utc.to_datetime
+        dtstart     show.start_time.to_datetime
+        dtend       show.end_time.to_datetime
         summary     "Scared Scriptless"
         description show.description
       end
     end
       
     calendar
+  end
+  
+  def self.timezone
+    timezone = Icalendar::Timezone.new
+    daylight = Icalendar::Daylight.new
+    standard = Icalendar::Standard.new
+
+    timezone.timezone_id =            "Pacific/Auckland"
+    
+    timezone.daylight do
+      timezone_offset_from "+1300"
+      timezone_offset_to   "+1200"
+      timezone_name        "NZDT"
+      dtstart              "19700927T020000"
+      recurrence_rules     ["FREQ=YEARLY;BYMONTH=9;BYDAY=-1SU"]
+    end
+    
+    timezone.standard do
+      timezone_offset_from "+1200"
+      timezone_offset_to   "+1300"
+      timezone_name        "NZST"
+      dtstart              "19700405T030000"
+      recurrence_rules     ["FREQ=YEARLY;BYMONTH=4;BYDAY=1SU"]
+    end
+
+    timezone
   end
   
 end
