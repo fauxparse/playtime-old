@@ -108,6 +108,7 @@ class Show
   
   def self.calendar
     calendar = Calendar.new
+    calendar.custom_property "X-WR-CALNAME", "Scared Scriptless"
 
     calendar.timezone do
       timezone_id "Pacific/Auckland"
@@ -140,6 +141,7 @@ class Show
         dtend       show.end_time.to_datetime
         summary     "Scared Scriptless"
         description show.description
+        location    "The Court Theatre"
       end
     end
       
