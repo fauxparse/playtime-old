@@ -58,6 +58,8 @@ GEM
     excon (0.13.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    faraday (0.8.7)
+      multipart-post (~> 1.1)
     fog (1.3.1)
       builder
       excon (~> 0.13.0)
@@ -69,6 +71,7 @@ GEM
       nokogiri (~> 1.5.0)
       ruby-hmac
     formatador (0.2.4)
+    hashie (2.0.3)
     hike (1.2.1)
     i18n (0.6.4)
     icalendar (1.2.4)
@@ -101,6 +104,7 @@ GEM
       activesupport (~> 3.0)
       plucky (~> 0.5.2)
     multi_json (1.0.4)
+    multipart-post (1.2.0)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.6.6)
@@ -145,6 +149,11 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
+    sentry-raven (0.4.5)
+      faraday (>= 0.7.6)
+      hashie
+      multi_json (~> 1.0)
+      uuidtools
     spine-rails (0.1.0)
       rails (>= 3.1.0)
     sprockets (2.2.2)
@@ -168,6 +177,7 @@ GEM
     unicorn (3.4.0)
       kgio (~> 2.2)
       rack
+    uuidtools (2.1.3)
 
 PLATFORMS
   ruby
@@ -188,6 +198,7 @@ DEPENDENCIES
   rails (= 3.2.11)
   roadie
   sass-rails (~> 3.2.3)
+  sentry-raven
   spine-rails
   therubyracer
   uglifier (>= 1.0.3)

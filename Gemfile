@@ -33,6 +33,8 @@ gem 'icalendar'
 
 gem 'roadie'
 
+gem 'sentry-raven'
+
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
