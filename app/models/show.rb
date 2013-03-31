@@ -31,7 +31,7 @@ class Show
     roles = self.players
     str = ""
     { mc: "MC", player: "Players", muso: "Muso", notes: "Notes" }.each_pair do |role, label|
-      str += "#{label}: #{roles[role].to_sentence}\n" if roles[role]
+      str += "#{label}: #{roles[role].to_sentence}\r\n" if roles[role]
     end
     str
   end
