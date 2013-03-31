@@ -1,5 +1,6 @@
 class ShowsController < ApplicationController
   respond_to :json
+  respond_to :ics, :only => :index
   require_login
   
   def index
@@ -8,6 +9,10 @@ class ShowsController < ApplicationController
         params[:year]  ||= Date.today.year
         params[:month] ||= Date.today.month
         render :json => Show.month(params[:year].to_s.to_i(10), params[:month].to_s.to_i(10)).as_json(:methods => :last)
+      end
+      
+      format.ics do
+        render text: Show.calendar.to_ical
       end
     end
   end

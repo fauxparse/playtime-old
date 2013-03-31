@@ -1,5 +1,6 @@
 class Show
   include MongoMapper::Document
+  include Icalendar
   
   key :cast, Hash, :default => lambda { Hash.new }
   key :date, Date
@@ -14,8 +15,25 @@ class Show
     self._id = Show.date_key value
   end
   
+  def start_time
+    date.to_time + 22.hours + 15.minutes
+  end
+  
+  def end_time
+    start_time + 90.minutes
+  end
+  
   def id=(value)
     self.date = Date.civil *value.split("-").map { |d| d.to_i(10) }
+  end
+  
+  def description
+    roles = self.players
+    str = ""
+    { mc: "MC", player: "Players", muso: "Muso", notes: "Notes" }.each_pair do |role, label|
+      str += "#{label}: #{roles[role].to_sentence}\n" if roles[role]
+    end
+    str
   end
   
   def apply(changes)
@@ -46,7 +64,7 @@ class Show
     for role in players.keys
       players[role].map! { |id| jesters[id] || id }
     end
-    players
+    players.with_indifferent_access
   end
 
   def player_emails
@@ -86,6 +104,24 @@ class Show
     dates.map do |d|
       from_db[date_key(d)] or date(d)
     end
+  end
+  
+  def self.calendar
+    calendar = Calendar.new
+    shows = where date: {
+      "$gt" => (Date.today - 1.month).to_time,
+      "$lt" => (Date.today + 2.months).to_time
+    }
+    shows.each do |show|
+      calendar.event do
+        dtstart     show.start_time.to_datetime
+        dtend       show.end_time.to_datetime
+        summary     "Scared Scriptless"
+        description show.description
+      end
+    end
+      
+    calendar
   end
   
 end
