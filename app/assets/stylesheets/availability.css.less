@@ -126,9 +126,13 @@
         width: 32px;
         height: 32px;
         .retina-icons('black');
+        background-position: 0 -32px;
       }
 
-      &.header:after { display: none; }
+      &.header {
+        text-align: right;
+        &:after { display: none; }
+      }
 
       &[data-state=available] {
         background-color: @GREEN;
@@ -150,6 +154,7 @@
     }
 
     &.header {
+      text-align: center;
       border-bottom: 1px solid @GREY;
     }
 
