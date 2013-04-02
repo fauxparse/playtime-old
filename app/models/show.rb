@@ -55,6 +55,7 @@ class Show
     players = {}
     except = %w(unavailable available)
     cast.each_pair do |id, role|
+      role = "player" if role === "guest"
       unless except.include? role
         (players[role] ||= []) << id
       end
@@ -69,7 +70,7 @@ class Show
 
   def player_emails
     emails = players.values.collect do |jesters|
-      jesters.collect { |j| j.respond_to?(:email) ? j.email : nil }.flatten
+      jesters.collect { |j| j.respond_to?(:email) ? j.email : nil }.flatten.compact
     end
     emails.flatten
   end
