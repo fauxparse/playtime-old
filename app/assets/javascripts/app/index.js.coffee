@@ -13,7 +13,11 @@ class App extends Spine.Controller
     Awards:       {}
   @Models: {}
   
+  LOCATION_KEY: "saved_location"
+  
   init: ->
+    window.location.hash = @savedLocation() if navigator.standalone
+    $(window).on "hashchange", @saveLocation
     App.Controllers.Login.login().done @start
     
   start: =>
@@ -34,6 +38,15 @@ class App extends Spine.Controller
       $("<div>", class: "application").appendTo("body")
       @navigate "/", false
       App.Controllers.Login.login().done @start
+      
+  saveLocation: =>
+    if window.localStorage?
+      localStorage.setItem @LOCATION_KEY, location.hash.replace(/^#/, "")
+      
+  savedLocation: ->
+    if window.localStorage?
+      localStorage.getItem @LOCATION_KEY
+    
 
 window.App = App
 $ ->
