@@ -8,8 +8,9 @@
     <fieldset>
       <input type="text" name="name" value="<%= @jester.name %>" placeholder="Name">
       <p class="error" style="display: none;">Name can’t be blank!</p>
-      <input type="text" name="email" value="<%= @jester.email %>" placeholder="Email address">
+      <input type="email" name="email" value="<%= @jester.email %>" placeholder="Email address">
       <p class="error" style="display: none;">Email can’t be blank!</p>
+      <input type="tel" name="phone" value="<%= @jester.phone %>" placeholder="Phone">
       <input type="hidden" name="active" value="0">
       <label class="checkbox"><input type="checkbox" name="active" value="1"<%= " checked" if @jester.active %>> Active</label>
       <input type="hidden" name="admin" value="0">

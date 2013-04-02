@@ -1,6 +1,7 @@
 input[type=text],
 input[type=password],
-input[type=email] {
+input[type=email],
+input[type=tel] {
   display: block;
   margin: 0 0 8px;
   width: 100%;
@@ -65,7 +66,8 @@ fieldset {
   }
 }
 
-.application button {
+.application button,
+.application .button {
   font-size: 20px;
   font-weight: bold;
   line-height: 32px;
@@ -74,4 +76,9 @@ fieldset {
   padding: 0 8px;
   background: @GREEN;
   color: white;
+}
+
+a.button {
+  text-decoration: none;
+  text-align: center;
 }

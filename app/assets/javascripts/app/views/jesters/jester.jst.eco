@@ -31,4 +31,9 @@
       </ul>
     </div>
   </div>
+  <a class="email button" href="mailto:<%= @jester.email %>"><%= @jester.email %></a>
+  <% if @jester.phone: %>
+    <a class="phone button" href="tel:<%= @jester.phone %>">Call: <%= @jester.phone %></a>
+    <a class="phone button" href="sms:<%= @jester.phone %>">Text: <%= @jester.phone %></a>
+  <% end %>
 </div>

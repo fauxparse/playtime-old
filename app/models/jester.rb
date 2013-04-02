@@ -5,6 +5,7 @@ class Jester
 
   key :name,    String
   key :email,   String
+  key :phone,   String
   key :slug,    String
   key :active,  Boolean, default: true
   key :admin,   Boolean, default: false

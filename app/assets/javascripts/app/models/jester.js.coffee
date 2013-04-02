@@ -1,5 +1,5 @@
 class App.Models.Jester extends Spine.Model
-  @configure "Jester", "slug", "name", "email", "active", "admin", "password", "password_confirmation", "type", "options"
+  @configure "Jester", "slug", "name", "email", "phone", "active", "admin", "password", "password_confirmation", "type", "options"
   @extend Spine.Model.Ajax
 
   url: -> "/jesters/#{@slug}"
