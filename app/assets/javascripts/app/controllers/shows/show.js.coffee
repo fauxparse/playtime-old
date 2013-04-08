@@ -59,7 +59,6 @@ class App.Controllers.Shows.Show extends App.Controller
     $(window).off "beforeunload", @deactivate
 
   renderGuest: (guest) =>
-    console.log guest
     @person(guest)
       .attr("data-id": guest.slugify(), "data-role": "guest")
 
@@ -144,7 +143,6 @@ class App.Controllers.Shows.Show extends App.Controller
     modal.show()
 
   deactivate: =>
-    console.log "deactivate"
     if @_notificationsTimer
       clearTimeout @_notificationsTimer
       @sendNotifications()
