@@ -9,6 +9,7 @@ class Show
   FRIDAY = 5
   SATURDAY = 6
   DAYS_WITH_SHOWS = [ FRIDAY, SATURDAY ].freeze
+  CAST_ROLES = %w(mc player muso notes)
   
   def date=(value)
     write_key :date, value
@@ -37,14 +38,17 @@ class Show
   end
   
   def apply(changes)
+    cast_changed = false
     changes.each do |id, role|
       if role.nil?
+        cast_changed = true if CAST_ROLES.include? cast[id]
         cast.delete id
       else
+        cast_changed = true if CAST_ROLES.include? role
         cast[id] = role
       end
     end
-    self
+    cast_changed
   end
 
   def last
@@ -78,9 +82,10 @@ class Show
   def self.apply(changes)
     shows = []
     changes.each do |id, casting|
-      show = find(id).apply(casting)
+      show = find(id)
+      cast_changed = show.apply(casting)
       show.save
-      shows.push show
+      shows.push [show, cast_changed]
     end
     shows
   end

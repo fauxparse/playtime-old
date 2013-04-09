@@ -34,8 +34,10 @@ class ShowsController < ApplicationController
     shows = []
     if params.key? :changes
       shows = Show.apply params[:changes]
-      for show in shows
-        Resque.delay 10.minutes, ShowNotifier, show.id, current_jester.id
+      shows.each do |show, cast_changed|
+        if cast_changed
+          Resque.delay 10.minutes, ShowNotifier, show.id, current_jester.id
+        end
       end
     end
     render :json => shows
