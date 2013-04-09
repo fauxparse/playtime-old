@@ -74,7 +74,7 @@ class Show
     end
     emails.flatten
   end
-
+  
   def self.apply(changes)
     shows = []
     changes.each do |id, casting|

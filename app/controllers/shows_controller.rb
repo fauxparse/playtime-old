@@ -31,15 +31,16 @@ class ShowsController < ApplicationController
   end
   
   def batch
-    shows = Show.apply params[:changes] if params.key? :changes
+    shows = []
+    if params.key? :changes
+      shows = Show.apply params[:changes]
+      for show in shows
+        Resque.delay 10.minutes, ShowNotifier, show.id, current_jester.id
+      end
+    end
     render :json => shows
   end
 
-  def send_notifications
-    Postman.casting_notification(show, current_jester).deliver
-    head :ok
-  end
-  
 protected
   def show
     @show ||= Show.date(Date.civil(
