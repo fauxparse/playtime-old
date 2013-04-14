@@ -25,6 +25,8 @@ class Jester
   
   validates_presence_of :name, :email, :slug
   before_validation :generate_slug
+  
+  has_many :activities
 
   def to_s
     name

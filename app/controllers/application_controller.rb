@@ -24,4 +24,12 @@ protected
   def self.require_login(options = {})
     before_filter :require_login, options
   end
+  
+  def track(trackable, action = params[:action])
+    Activity.log!(
+      jester:    current_jester,
+      trackable: trackable,
+      action:    action
+    )
+  end
 end

@@ -1,0 +1,106 @@
+@import "variables.css.less";
+
+body, input, select, textarea, button {
+  font: normal 14px/18px "Montserrat", "Helvetica Neue", "Helvetica", "Arial Unicode MS", sans-serif;
+}
+
+body {
+  background: @WHITE;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: @RED;
+}
+
+header {
+  background: @BLUE;
+  color: white;
+  padding: 0 120px 0 40px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  
+  .icon-edit {
+    position: absolute;
+    left: 4px;
+    top: 4px;
+  }
+  
+  h1 {
+    margin: 0;
+    line-height: 40px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
+  a {
+    position: absolute;
+    top: 4px;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    text-decoration: none;
+    background-color: rgba(0, 0, 0, 0.2);
+    .retina-icons('white');
+    background-position: 32px 32px;
+    color: @WHITE;
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 30px;
+    text-indent: -100px;
+    overflow: hidden;
+    z-index: 1;
+
+    &[rel=next] {
+      right: 4px;
+      background-position: -96px 0px;
+      border-radius: 0 4px 4px 0;
+    }
+    
+    &[rel=prev] {
+      right: 37px;
+      background-position: 0px 0px;
+      border-radius: 4px 0 0 4px;
+    }
+  }
+}
+
+ul {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  
+  li {
+    display: block;
+    margin: 0;
+    padding: 10px 0 10px 40px;
+    border-bottom: 1px solid @SILVER;
+    position: relative;
+    
+    i[class] {
+      position: absolute;
+      left: 2px;
+      top: 2px;
+      .retina-icons('black');
+      opacity: 0.5;
+    }
+    
+    small {
+      color: @SILVER;
+      font-size: inherit;
+    }
+  }
+}

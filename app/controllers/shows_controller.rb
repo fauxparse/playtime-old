@@ -27,6 +27,7 @@ class ShowsController < ApplicationController
   
   def update
     show.update_attributes params[:show]
+    track show
     respond_with show
   end
   
@@ -37,10 +38,13 @@ class ShowsController < ApplicationController
       shows.each do |show, cast_changed|
         if cast_changed
           Resque.delay 10.minutes, ShowNotifier, show.id, current_jester.id
+          track show, "update"
+        else
+          track show, "availability"
         end
       end
     end
-    render :json => shows
+    render json: shows.map(&:first)
   end
 
 protected

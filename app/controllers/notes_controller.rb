@@ -9,6 +9,7 @@ class NotesController < ApplicationController
   def create
     show.notes = show.notes + [Note.new(params[:note].except(:id))]
     show.save
+    track show, "notes"
     render json: @note
   end
 

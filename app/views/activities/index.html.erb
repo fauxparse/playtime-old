@@ -1,0 +1,12 @@
+<header>
+  <i class="icon-edit"></i>
+  <h1>Activity for <%= date.strftime "%A, %d %B" %></h1>
+  <a href="/activity/<%= date_param(date - 1.day) %>" rel="prev">«</a>
+  <a href="/activity/<%= date_param(date + 1.day) %>" rel="next">»</a>
+</header>
+
+<ul>
+  <% @activities.each do |group| %>
+    <%= ActivityPresenter.new(group, self).render_activity_group %>
+  <% end %>
+</ul>

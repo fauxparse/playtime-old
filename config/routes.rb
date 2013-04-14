@@ -1,7 +1,6 @@
 require "resque/server"
 
 Playtime::Application.routes.draw do
-
   constraints(year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/) do
     get "shows/:year/:month/:day" => "shows#edit", :as => :show
     get "shows/:year/:month" => "shows#index", :as => :month
@@ -32,6 +31,9 @@ Playtime::Application.routes.draw do
       delete "likes" => "awards#unlike"
     end
   end
+
+  get "activity/:year/:month/:day" => "activities#index"
+  resources :activities, path: "activity", only: :index
 
   get    "login"  => "sessions#current", as: :current_session
   post   "login"  => "sessions#login",   as: :login
