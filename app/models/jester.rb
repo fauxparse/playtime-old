@@ -22,6 +22,7 @@ class Jester
   attr_protected :remember_token
 
   before_create :generate_token
+  before_save :downcase_email!
   
   validates_presence_of :name, :email, :slug
   before_validation :generate_slug
@@ -48,7 +49,7 @@ class Jester
   end
 
   def self.authenticate(email, password)
-    (find_by_email(email) or find_by_slug(email)).try(:authenticate, password)
+    (find_by_email(email.downcase) or find_by_slug(email.downcase)).try(:authenticate, password)
   end
 
   def self.stats(window = 90.days, start_date = Date.today - window)
@@ -181,5 +182,9 @@ protected
   
   def generate_slug
     self.slug ||= self.name.gsub(/\.$/, "").parameterize
+  end
+  
+  def downcase_email!
+    self.email.downcase! unless self.email.blank?
   end
 end
