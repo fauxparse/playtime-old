@@ -34,10 +34,15 @@ class Jester
   end
 
   def serializable_hash(options = {})
-    json = super({ except: [ :password_digest, :remember_token, :avatar_filename, :_type ] }.merge(options))
+    except = %w(password_digest remember_token avatar_filename _type).map(&:to_sym) + (options[:except] || [])
+    json = super options.merge(except: except)
     json[:avatar] = avatar.try(:web).try(:url)
     json[:type] = self.class.name
     json
+  end
+  
+  def as_json(options = {})
+    super options
   end
 
   def self.factory(attrs)

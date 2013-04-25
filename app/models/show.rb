@@ -4,7 +4,12 @@ class Show
   
   key :cast, Hash, :default => lambda { Hash.new }
   key :date, Date
-  many :notes
+  many :notes do
+    def tagged(tag)
+      regexp = %r{##{tag}}i
+      proxy_owner.notes.select { |note| regexp === note.content }.map(&:content)
+    end
+  end
 
   FRIDAY = 5
   SATURDAY = 6
@@ -110,6 +115,11 @@ class Show
     dates.map do |d|
       from_db[date_key(d)] or date(d)
     end
+  end
+  
+  def self.weekend(date)
+    friday = date - date.wday + 5
+    where date: { :"$gte" => friday.to_time, :"$lt" => (friday + 2).to_time }
   end
   
   def self.calendar

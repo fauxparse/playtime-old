@@ -4,6 +4,7 @@ Playtime::Application.routes.draw do
   constraints(year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/) do
     get "shows/:year/:month/:day" => "shows#edit", :as => :show
     get "shows/:year/:month" => "shows#index", :as => :month
+    get "shows/weekend/:year/:month/:day" => "shows#weekend", :as => :weekend
   end
 
   put "shows" => "shows#batch", :as => :update_shows
