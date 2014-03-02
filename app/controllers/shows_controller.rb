@@ -1,7 +1,7 @@
 class ShowsController < ApplicationController
   respond_to :json, except: :calendar
   respond_to :ics, only: :index
-  require_login except: [:calendar, :weekend]
+  require_login except: [:calendar, :weekend, :cast]
   
   def index
     respond_to do |format|
@@ -49,6 +49,15 @@ class ShowsController < ApplicationController
       end
     end
     render json: shows.map(&:first)
+  end
+  
+  def cast
+    @shows = Show.where(date: {
+      "$gt" => (Date.today - 1.day).to_time,
+      "$lt" => (Date.today + 1.month).to_time
+    }).group_by(&:month).to_a.sort_by(&:first)
+    
+    render layout: false
   end
 
 protected

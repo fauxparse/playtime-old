@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Scared Scriptless casting information</title>
+    <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Montserrat:400,700", :media => "all" %>
+    <%= stylesheet_link_tag "cast", :media => "all" %>
+  </head>
+  <body>
+    <% @shows.each do |month, shows| %>
+      <h2><%= Date.civil(month / 12, month % 12, 1).strftime("%B %Y") %></h2>
+      <% shows.each do |show| %>
+        <h3><%= show.date.strftime("%A %e") %></h3>
+        <dl>
+          <% show.players.to_a.sort_by(&:first).each do |(role, players)| %>
+            <% unless role.blank?%>
+              <dt><%= role.to_s.pluralize(players.length) %></dt>
+              <dd><%= players.to_sentence %></dd>
+            <% end %>
+          <% end %>
+        </dl>
+      <% end %>
+    <% end %>
+  </body>
+</html>

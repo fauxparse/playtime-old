@@ -17,5 +17,8 @@
 # Ignore local environment config
 .env
 
+sync
+db/backups
+
 .DS_Store
 **/.DS_Store

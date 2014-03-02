@@ -84,6 +84,10 @@ class Show
     emails.flatten
   end
   
+  def month
+    date.year * 12 + date.month
+  end
+  
   def self.apply(changes)
     shows = []
     changes.each do |id, casting|
