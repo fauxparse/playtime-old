@@ -9,7 +9,7 @@
   <body>
     <% @shows.each do |month, shows| %>
       <h2><%= Date.civil(month / 12, month % 12, 1).strftime("%B %Y") %></h2>
-      <% shows.each do |show| %>
+      <% shows.sort_by(&:date).each do |show| %>
         <h3><%= show.date.strftime("%A %e") %></h3>
         <dl>
           <% show.players.to_a.sort_by(&:first).each do |(role, players)| %>
